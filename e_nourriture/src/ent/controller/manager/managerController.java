@@ -104,8 +104,6 @@ public class managerController extends HttpServlet{
 		System.out.println(id+","+text);
 		
 		
-		
-		
 	}
 	
 	protected void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
