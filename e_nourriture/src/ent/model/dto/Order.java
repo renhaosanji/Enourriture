@@ -4,12 +4,23 @@ public class Order {
 	private String OrderNumber;	//주문 번호
 	private String userId;		//ID
 	private String productName;	//주문 물품 이름
-	private int orderCount;		//주문 수량
+	private String orderCount;		//주문 수량
 	private String orderTime;	//주문 시간
 	private String Address;		//주소
 	
 	public Order() {
 		
+	}
+
+	public Order(String OrderNumber, String userId, String productName, String orderCount, String orderTime,
+			String Address) {
+		super();
+		this.OrderNumber = OrderNumber;
+		this.userId = userId;
+		this.productName = productName;
+		this.orderCount = orderCount;
+		this.orderTime = orderTime;
+		this.Address = Address;
 	}
 
 	public String getOrderNumber() {
@@ -36,11 +47,11 @@ public class Order {
 		this.productName = productName;
 	}
 
-	public int getOrderCount() {
+	public String getOrderCount() {
 		return orderCount;
 	}
 
-	public void setOrderCount(int orderCount) {
+	public void setOrderCount(String orderCount) {
 		this.orderCount = orderCount;
 	}
 
