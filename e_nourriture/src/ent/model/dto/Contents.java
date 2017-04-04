@@ -13,6 +13,11 @@ public class Contents {
 	private ArrayList<Communication> communication;	//댓글
 	private ProductInfo productInfo;		//상품 정보
 	
+	
+	
+	public Contents() {
+		super();
+	}
 	public String getContentsId() {
 		return ContentsId;
 	}

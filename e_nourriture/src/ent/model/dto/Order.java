@@ -7,4 +7,60 @@ public class Order {
 	private int orderCount;		//주문 수량
 	private String orderTime;	//주문 시간
 	private String Address;		//주소
+	
+	public Order() {
+		super();
+	}
+
+	public String getOrderNumber() {
+		return OrderNumber;
+	}
+
+	public void setOrderNumber(String orderNumber) {
+		OrderNumber = orderNumber;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public int getOrderCount() {
+		return orderCount;
+	}
+
+	public void setOrderCount(int orderCount) {
+		this.orderCount = orderCount;
+	}
+
+	public String getOrderTime() {
+		return orderTime;
+	}
+
+	public void setOrderTime(String orderTime) {
+		this.orderTime = orderTime;
+	}
+
+	public String getAddress() {
+		return Address;
+	}
+
+	public void setAddress(String address) {
+		Address = address;
+	}
+	
+	
+	
+	
 }

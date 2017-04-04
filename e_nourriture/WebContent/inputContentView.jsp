@@ -8,17 +8,24 @@
 </head>
 <body>
 <form>
-<table>
-	<tr>
-		<td></td>	
-	</tr>
+사진>
+<input type="text" name="text"><br>
+내용>
+<input type="text" name="content"><br>
+작성자>
+<input type="text" name="writer"><br>
+작성일자>
+<input type="text" name="writeDate"><br>
+판매물품>
+<input type="text" name="product"><br>
+판매처>
+<input type="text" name="productStore"><br>
+가격>
+<input type="text" name="price"><br>
+평점>
+<input type="text" name="like"><br>
+<input type="submit" value="등록">
 
-
-
-
-
-
-</table>
 </form>
 </body>
 </html>

@@ -32,6 +32,16 @@ public class userController extends HttpServlet {
 		process(request, response);
 	}
 	
+	/*
+	 * 1. 로그인
+	 * 2. 로그아웃
+	 * 3. 회원가입
+	 * 4. 회원탈퇴
+	 * 5. 내 정보 조회
+	 * 6. 검색
+	 * 7. 주문
+	 * 
+	 */
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		
