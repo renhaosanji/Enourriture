@@ -9,7 +9,7 @@ public class ProductInfo {
 	private int evaluation;			//ÆãÁ¡
 	
 	public ProductInfo() {
-		super();
+		
 	}
 
 	public String getContentsId() {

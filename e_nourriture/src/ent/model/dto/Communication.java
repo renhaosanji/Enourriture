@@ -8,7 +8,7 @@ public class Communication {
 	
 	
 	public Communication() {
-		super();
+		
 	}
 	public String getContentsId() {
 		return ContentsId;

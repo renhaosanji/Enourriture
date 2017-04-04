@@ -6,7 +6,7 @@ public class Follow {
 	private String followingUserId;		//∆»∑Œ¿Æ ID
 	
 	public Follow() {
-		super();
+		
 	}
 
 	public String getUserId() {

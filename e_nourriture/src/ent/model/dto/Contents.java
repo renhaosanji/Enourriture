@@ -16,7 +16,7 @@ public class Contents {
 	
 	
 	public Contents() {
-		super();
+		
 	}
 	public String getContentsId() {
 		return ContentsId;

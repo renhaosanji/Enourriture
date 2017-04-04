@@ -9,7 +9,7 @@ public class Order {
 	private String Address;		//аж╪р
 	
 	public Order() {
-		super();
+		
 	}
 
 	public String getOrderNumber() {
