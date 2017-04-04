@@ -1,11 +1,13 @@
 package ent.model.service;
 
+
 import ent.model.dao.UserDAO;
 import ent.model.dto.User;
 
 public class UserService {
 	
 	private UserDAO udao=null;
+	
 	
 	public UserService(){
 		udao = new UserDAO();
@@ -20,6 +22,8 @@ public class UserService {
 	public int join(User user){
 		return udao.join(user);
 	}
+	
+
 	
 	
 }

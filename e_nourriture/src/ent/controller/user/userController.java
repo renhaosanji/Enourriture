@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import ent.model.dto.User;
+import ent.model.service.FollowService;
 import ent.model.service.UserService;
 
 /**
@@ -73,12 +74,13 @@ public class userController extends HttpServlet {
 			
 			 UserService us = new UserService();
 			 boolean isLogin = us.login(id, password);
-			 
+			 FollowService fs = new FollowService();
 			 if(isLogin) {
 				 System.out.println("로그인 요청 성공");
 				 HttpSession session = request.getSession();
 				 session.setAttribute("ID", id);
-				 request.getRequestDispatcher("index.jsp").forward(request,response);
+				 System.out.println(fs.usersContentsLoading(id).toString()+"+++++++++++++++++++++");
+				 request.getRequestDispatcher("main.jsp").forward(request,response);
 			 }
 			
 		}
