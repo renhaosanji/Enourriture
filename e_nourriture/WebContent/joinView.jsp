@@ -4,25 +4,40 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>ÃˆÂ¸Â¿Ã¸Â°Â¡Ã€Ã”</title>
+<title>Insert title here</title>
 </head>
 <body>
-<form method="post" action="ucontroller?action=join">
-	<m1>ID:</m1>
-	<input type="text" name="ID" ><br>
-	<m1>password:</m1>
-	<input type="text" name="password" ><br>
-	<m1>password:</m1>
-	<input type="text" name="password_chk" ><br>
-	<m1>name:</m1>
-	<input type="text" name="name" ><br>
-	<m1>phone:</m1>
-	<input type="text" name="phone" ><br>
-	<m1>mail:</m1>
-	<input type="text" name="mail" ><br>
-	
-	<input type="submit" value="Â°Â¡Ã€Ã”Â½Ã…ÃƒÂ»">
+   <head>
+      <title>¿¬½À</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+   </head>
+   <body>
+      <div class="container" id="wrap">
+         <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+               <form name="signUpForm" class="form" role="form">
+                  <legend>È¸¿ø°¡ÀÔ</legend>   
+               
+                  <input type="text" name="name" class="form-control input-lg" ng-model="userName" placeholder="ÀÌ¸§" ng-required="true"/>
+                  <br>
+                  <input type="text" name="ID" class="form-control input-lg" ng-model="userId" placeholder="¾ÆÀÌµð" ng-required="true"/>
+                  <br>
+                  <input type="password" name="password" class="form-control input-lg" placeholder="ÆÐ½º¿öµå" ng-model="userPassword" ng-required="true" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/" />
+                  <div ng-show="signUpForm.password.$error.pattern" class="alert alert-warning" role="alert">ÃÖ¼Ò 4±ÛÀÚ, ÃÖ´ë 8±ÛÀÚÀÌ°í Àû¾îµµ 1³ªÀÇ ¼Ò¹®ÀÚ, ´ë¹®ÀÚ, ¼ýÀÚ¸¦ Æ÷ÇÔÇØ¾ßÇÕ´Ï´Ù.</div>
+                  <input type="password" name="password_chk" class="form-control input-lg" placeholder="ÆÐ½º¿öµå ÀçÀÔ·Â" ng-model="userRepassword" ng-required="true"/>
+                  <br>
+                  <input type="text" name="mail" class="form-control input-lg" placeholder="Email" ng-model="userEmail" ng-required="true" />
+                  <br>
+                  <input type="text" name="phone" class="form-control input-lg" placeholder="Phone" ng-model="userEmail" ng-required="true" />
+                  <br>
+                  <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">È¸¿ø°¡ÀÔ</button>
+               </form>
+               <div>
 
-</form>
+               </div>
+            </div>
+         </div>
+      </div>         
+   </body>
 </body>
 </html>
