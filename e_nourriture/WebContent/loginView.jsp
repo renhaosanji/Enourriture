@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post" action="controller?action=login" >
+<form method="post" action="ucontroller?action=login" >
 <table>
 	<tr>
 		<td>ID:</td>

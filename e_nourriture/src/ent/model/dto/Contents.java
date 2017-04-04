@@ -12,6 +12,7 @@ public class Contents {
 	private int contentsLikeCount; 			//좋아요
 	private ArrayList<Communication> communication;	//댓글
 	private ProductInfo productInfo;		//상품 정보
+	
 	public String getContentsId() {
 		return ContentsId;
 	}

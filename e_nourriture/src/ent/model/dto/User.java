@@ -11,6 +11,13 @@ public class User {
 	public User(){
 		
 	}
+	public User(String userId, String userPw, String nickname, String phoneNumber, String email){
+		this.userId=userId;
+		this.userPw=userPw;
+		this.nickname=nickname;
+		this.phoneNumber=phoneNumber;
+		this.email=email;
+	}
 
 	public String getUserId() {
 		return userId;

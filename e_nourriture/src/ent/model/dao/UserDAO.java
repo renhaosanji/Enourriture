@@ -39,7 +39,7 @@ public class UserDAO {
 	}
 	
 	// 등록
-	public int insert(User user){
+	public int join(User user){
 		
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -72,7 +72,7 @@ public class UserDAO {
 		
 		Connection conn=null;
 		Statement stmt=null;
-		String sql = "select userpw from member where userid=\'"+userId+"\'";
+		String sql = "select userpw from userinfo where userid=\'"+userId+"\'";
 		ResultSet rs =null;
 		String check_user_pw =null;
 		try {
@@ -98,6 +98,9 @@ public class UserDAO {
 
 		return false;
 	}
+	
+	// 조회
+	
 	
 	
 	

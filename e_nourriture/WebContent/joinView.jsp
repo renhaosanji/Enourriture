@@ -7,7 +7,7 @@
 <title>회원가입</title>
 </head>
 <body>
-<form method="post" action="">
+<form method="post" action="ucontroller?action=join">
 	<m1>ID:</m1>
 	<input type="text" name="ID" ><br>
 	<m1>password:</m1>

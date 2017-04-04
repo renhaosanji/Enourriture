@@ -2,18 +2,19 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>ent</display-name>
   <welcome-file-list>
+  	<welcome-file>loginView.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>Controller</display-name>
-    <servlet-name>Controller</servlet-name>
-    <servlet-class>ent.controller.user.Controller</servlet-class>
+    <display-name>userController</display-name>
+    <servlet-name>userController</servlet-name>
+    <servlet-class>ent.controller.user.userController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Controller</servlet-name>
-    <url-pattern>/controller</url-pattern>
+    <servlet-name>userController</servlet-name>
+    <url-pattern>/ucontroller</url-pattern>
   </servlet-mapping>
 </web-app>
