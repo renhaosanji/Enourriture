@@ -15,7 +15,7 @@
       <div class="container" id="wrap">
          <div class="row">
             <div class="col-md-6 col-md-offset-3">
-               <form name="signUpForm" class="form" role="form">
+               <form name="signUpForm" class="form" role="form" action="">
                   <legend>회원가입</legend>   
                
                   <input type="text" name="name" class="form-control input-lg" ng-model="userName" placeholder="이름" ng-required="true"/>

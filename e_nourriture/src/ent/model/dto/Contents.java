@@ -1,11 +1,11 @@
 package ent.model.dto;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Contents {
 	private String ContentsId;			//index
 	private String userId;				//writer
-	private String name;				//name
 	private String contents;			//내용
 	private String writeDate;			//작성 시간
 	private String imgURL;				//이미지 URL
@@ -16,6 +16,7 @@ public class Contents {
 	
 	
 	public Contents() {
+		contentsLikeCount=0;	
 		
 	}
 	public String getContentsId() {
@@ -29,12 +30,6 @@ public class Contents {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getContents() {
 		return contents;

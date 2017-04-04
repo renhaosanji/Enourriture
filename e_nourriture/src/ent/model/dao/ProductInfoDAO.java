@@ -1,5 +1,5 @@
 package ent.model.dao;
 
-public class ProducrInfoDAO {
+public class ProductInfoDAO {
 
 }

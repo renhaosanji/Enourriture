@@ -7,14 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<%
-	session.getAttribute("ID");
-%>
-
-<form method="post">
-	<input type="button" value="button" onclick="location.href='inputContentView.jsp'">
-
+<form method="post" action="mcontroller?action=upload">
+	<input type="file" name="file">
+	<input type="submit" value="submit">
 </form>
 </body>
 </html>
