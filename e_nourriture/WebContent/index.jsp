@@ -27,5 +27,9 @@
 <form method="post">
 	<input type="button" value="정보조회" onclick="location.href='userInfoTest.jsp'">
 </form>
+<form action="post" action="ucontroller?action=following">
+ <input type="text" name="followingUserId">
+ <input type="submit" value="following">
+</form>
 </body>
 </html>
