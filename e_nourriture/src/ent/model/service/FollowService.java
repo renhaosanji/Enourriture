@@ -12,8 +12,8 @@ public class FollowService {
 		// TODO Auto-generated constructor stub
 		followDAO = new FollowDAO();
 	}
-	public ArrayList<String> usersContentsLoading(String userId) {
+	public ArrayList<String> usersFollowingContentsLoading(String userId) {
 		System.out.println("++++++++++++++++++++++++++++++++");
-		return followDAO.usersContentsLoading(userId);
+		return followDAO.usersFollowingContentsLoading(followDAO.usersFollowingIdListLoading(userId));
 	}
 }

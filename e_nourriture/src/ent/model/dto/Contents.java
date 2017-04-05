@@ -12,7 +12,7 @@ public class Contents {
 	private int contentsLikeCount; 			//좋아요
 	private ArrayList<Communication> communication;	//댓글
 	private ProductInfo productInfo;		//상품 정보
-	
+	private String contentId; 
 
 	public Contents() {
 		contentsLikeCount=0;
@@ -61,6 +61,14 @@ public class Contents {
 	}
 	public void setProductInfo(ProductInfo productInfo) {
 		this.productInfo = productInfo;
+	}
+
+	public String getContentId() {
+		return contentId;
+	}
+
+	public void setContentId(String contentId) {
+		this.contentId = contentId;
 	}
 	
 	
