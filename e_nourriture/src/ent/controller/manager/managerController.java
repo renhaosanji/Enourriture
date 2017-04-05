@@ -76,7 +76,6 @@ public class managerController extends HttpServlet{
 //			inputContent(request,response);
 			break;
 			
-		
 		}
 	}
 	
@@ -104,7 +103,6 @@ public class managerController extends HttpServlet{
 		
 		// ³»¿ë
 		String text = (String)multi.getParameter("contents");
-		
 		
 		contents.setUserId(id);
 		contents.setContents(text);
@@ -169,9 +167,6 @@ public class managerController extends HttpServlet{
 			}
 			request.setAttribute("list", list);
 			request.getRequestDispatcher("myContents.jsp").forward(request, response);
-	
-		
 	}
 	
-
 }
