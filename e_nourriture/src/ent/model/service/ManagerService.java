@@ -1,5 +1,7 @@
 package ent.model.service;
 
+import java.util.ArrayList;
+
 import ent.model.dao.ContentsDAO;
 import ent.model.dao.ProductInfoDAO;
 import ent.model.dto.Contents;
@@ -29,6 +31,10 @@ public class ManagerService {
 	//1-2. 글 등록(상품)
 	public int inputProductInfo(ProductInfo productInfo){
 		return product.inputProductInfo(productInfo);
+	}
+	
+	public ArrayList<Contents> myContents(String userid){
+		return content.myContents(userid);
 	}
 	
 	

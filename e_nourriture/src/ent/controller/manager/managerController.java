@@ -3,6 +3,7 @@ package ent.controller.manager;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -67,8 +68,8 @@ public class managerController extends HttpServlet{
 //			inputContent(request,response);
 			break;
 		case "myContent":
-			System.out.println("upload");
-//			inputContent(request,response);
+			System.out.println("myContent");
+			myContent(request,response);
 			break;
 		case "myOrder":
 			System.out.println("upload");
@@ -79,24 +80,23 @@ public class managerController extends HttpServlet{
 		}
 	}
 	
+	// 1. 글 등록
 	protected void inputContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 작성자
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("ID");			
 		
-		
-
-		// 작성일 등록
+		// 작성일
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String writeDate = sdf.format(new Date());
 		
-		// 이미지 등록
+		// 이미지
 		Contents contents = new Contents();
 		ServletContext context = getServletContext();
 		String addr = (String)request.getRealPath("image");
 		System.out.println(addr);
-		String imgURL = addr.substring(addr.indexOf("WebContent")+10, addr.length());
+		String imgURL = addr.substring(addr.indexOf("WebContent")+11, addr.length());
 		System.out.println(imgURL);
 		MultipartRequest multi = new MultipartRequest(request, addr, 5 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
 		String name = multi.getFilesystemName("imgfile");
@@ -140,6 +140,7 @@ public class managerController extends HttpServlet{
 		productInfo.setProductStoreAddr(productStoreAddr);
 		productInfo.setContentsId(contentsid);
 		
+		contents.setProductInfo(productInfo);
 		System.out.println(productInfo.toString());
 		
 		
@@ -150,6 +151,26 @@ public class managerController extends HttpServlet{
 			System.out.println("실패");
 		}
 
+	}
+	
+	// 4. 글 조회
+	protected void myContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+			// 작성자
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("ID");
+			System.out.println(id);
+			
+			ManagerService ms = new ManagerService();
+			
+			ArrayList<Contents> list = ms.myContents(id);
+			for(int i=0;i<list.size();i++){
+				System.out.println(list.get(i).getContentId());
+			}
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("myContents.jsp").forward(request, response);
+	
+		
 	}
 	
 

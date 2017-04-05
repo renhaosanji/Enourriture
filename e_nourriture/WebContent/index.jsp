@@ -12,8 +12,9 @@
 	session.getAttribute("ID");
 %>
 
-<form method="post">
+<form method="post" action="mcontroller?action=myContent" >
 	<input type="button" value="button" onclick="location.href='inputContentView.jsp'">
+	<input type="submit" value="submit"  >
 
 </form>
 
