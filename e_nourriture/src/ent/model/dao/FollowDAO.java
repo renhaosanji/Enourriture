@@ -64,7 +64,7 @@ public class FollowDAO {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		Contents followingUserContent = new Contents();
+		
 		ArrayList<Contents> followingUserContentList = new ArrayList<>();
 		String sqlcon1 = "select * from USERCONTENTS where userid=\'";
 		String sqlcon2 = "or userid=\'";
@@ -83,9 +83,9 @@ public class FollowDAO {
 				conn = getConnection();
 				stmt = getStatement(conn);
 				String sql = sqlcon1 + followingUserIds.get(0) + "\'" + sb.toString() + "\'" + sqlcon3;
-				System.out.println(sql + "++++++++++++++++++++++++++++++++++++++++++++");
 				rs = stmt.executeQuery(sql);
 				while (rs.next()) {
+					Contents followingUserContent = new Contents();
 					followingUserContent.setUserId(rs.getString(1));
 					followingUserContent.setContentId(rs.getString(2));
 					followingUserContent.setContents(rs.getString(3));
