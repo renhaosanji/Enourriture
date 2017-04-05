@@ -74,35 +74,34 @@ public class UserDAO {
 	}
 	
 	//2. user 로그인
-	public boolean login(String userId, String userPw){
-		
-		Connection conn=null;
-		Statement stmt=null;
-		String sql = "select userpw from userinfo where userid='"+userId+"'";
-		ResultSet rs =null;
-		String check_user_pw =null;
-		try {
-			conn = getConnection();
-			stmt = getStatement(conn);
-			rs = stmt.executeQuery(sql);
-			
-			if(rs.next()){
-				check_user_pw = rs.getString(1);
-			}
-			if(check_user_pw==null){
-				return false;
-			} else {
-				
-				if(check_user_pw.equals(userPw)){
-					return true;
-				}
-			}			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return false;
+	public String login(String userid, String userpw) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+	    String sql = null;
+	    try {
+	    	conn = getConnection();
+	        sql = "select * from userinfo where userid=? and userpw=?";
+	        pstmt = conn.prepareStatement(sql);
+	        
+	        pstmt.setString(1, userid);
+		    pstmt.setString(2, userpw);
+	
+		    rs = pstmt.executeQuery();
+		    
+	      
+	      
+	        if(rs.next()) {
+	        	  System.out.println("2"+rs.getString("userid"));
+	        	return userid;
+	        }
+	     } catch (SQLException e) {
+	    	 System.out.println("Error : " + e.getMessage());
+	         e.printStackTrace();
+	     } finally {
+	    	 fd.close(rs, pstmt, conn);
+	    }
+	    return null;
 	}
 	
 	// 3. user 정보 조회
@@ -111,7 +110,7 @@ public class UserDAO {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs=null;
-		String sql = "select * from Member where userId='"+userId+"'";
+		String sql = "select * from userinfo where userId='"+userId+"'";
 		String userPw=null;
 		String nickname=null;
 		String phoneNumber=null;
@@ -145,7 +144,7 @@ public class UserDAO {
 
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		String sql = "delete member where userId=? and userPw=?";
+		String sql = "delete userinfo where userId=? and userPw=?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -166,12 +165,12 @@ public class UserDAO {
 	public int update(User dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-
 		try {
+			System.out.println("update 시작");
 			// 2. db 서버연결
 			conn = getConnection();
 			// 3. 특정 sql 전용 통로개설
-			String sql = "update member set userPw = ?, phoneNumber = ?, email=?, nickname=? where userId = ?";
+			String sql = "update userinfo set userPw = ?, phoneNumber = ?, email=?, nickName = ? where userId = ?";
 			pstmt = conn.prepareStatement(sql); 
 			pstmt.setString(1, dto.getUserPw());
 		    pstmt.setString(2, dto.getPhoneNumber());
@@ -179,7 +178,9 @@ public class UserDAO {
 		    pstmt.setString(4, dto.getNickname());
 		    pstmt.setString(5, dto.getUserId());
 			// 4. sql 수행요청 :
-			// 5. sql 결과처리
+			// 5. sql 결과처리\
+		    System.out.println("되는 거니");
+		    System.out.println(pstmt.executeUpdate());
 			return pstmt.executeUpdate();  
 			
 		} catch (SQLException e) {
@@ -199,7 +200,7 @@ public class UserDAO {
 		try {
 			conn = getConnection();
 			
-			String sql = "update member set user_pw=? where user_id=? and user_pw";
+			String sql = "update userinfo set user_pw=? where user_id=? and user_pw";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, changeUserPw);	

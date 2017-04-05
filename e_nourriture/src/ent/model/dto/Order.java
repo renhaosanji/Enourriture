@@ -1,34 +1,40 @@
 package ent.model.dto;
 
 public class Order {
-	private String OrderNumber;	//주문 번호
+	private String orderNumber;	//주문 번호
 	private String userId;		//ID
 	private String productName;	//주문 물품 이름
 	private String orderCount;		//주문 수량
 	private String orderTime;	//주문 시간
-	private String Address;		//주소
+	private String address;		//주소
 	
 	public Order() {
 		
 	}
 
-	public Order(String OrderNumber, String userId, String productName, String orderCount, String orderTime,
-			String Address) {
+	public Order(String orderNumber, String userId) {
 		super();
-		this.OrderNumber = OrderNumber;
+		this.orderNumber = orderNumber;
+		this.userId = userId;
+	}
+
+	public Order(String orderNumber, String userId, String productName, String orderCount, String orderTime,
+			String address) {
+		super();
+		this.orderNumber = orderNumber;
 		this.userId = userId;
 		this.productName = productName;
 		this.orderCount = orderCount;
 		this.orderTime = orderTime;
-		this.Address = Address;
+		this.address = address;
 	}
 
 	public String getOrderNumber() {
-		return OrderNumber;
+		return orderNumber;
 	}
 
 	public void setOrderNumber(String orderNumber) {
-		OrderNumber = orderNumber;
+		this.orderNumber = orderNumber;
 	}
 
 	public String getUserId() {
@@ -64,13 +70,13 @@ public class Order {
 	}
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
-	
+
 	
 	
 	

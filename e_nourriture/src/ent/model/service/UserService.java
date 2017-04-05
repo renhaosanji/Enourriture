@@ -1,19 +1,24 @@
 package ent.model.service;
 
+import ent.model.dto.User;
 import ent.model.dao.UserDAO;
 import ent.model.dto.Order;
-import ent.model.dto.User;
 import ent.model.dao.OrderDAO;
-
+import ent.model.dto.Communication;
+import ent.model.dao.CommunicationDAO;
 public class UserService {
 	
-	private UserDAO udao=null;
-	private OrderDAO odao=null;
+	private UserDAO udao=new UserDAO();
+	private OrderDAO odao=new OrderDAO();
+	private CommunicationDAO cdao=new CommunicationDAO();;
+	
 	public UserService(){
-		udao = new UserDAO();
+
 	}
-	public boolean login(String userId, String userPw){
-		return udao.login(userId, userPw);
+	public String login(String userid, String userpw) {
+		String loginid = udao.login(userid, userpw);
+		System.out.println("3"+loginid);
+		return loginid;
 	}
 	public int join(User user){
 		return udao.join(user);
@@ -29,7 +34,18 @@ public class UserService {
 		return udao.update(dto);
 	}
 	public int purchase(Order dto){
+		System.out.println("4");
 		return odao.purchase(dto);
-		
 	}
+	public int cancellation(String orderNumber, String userId){
+		System.out.println("4");
+		return odao.cancellation(orderNumber,userId );
+	}
+	public int insertComSender(Communication dto){
+		return cdao.insertComSender(dto);
+	}
+	public int insertComReciver(Communication dto){
+		return cdao.insertComReciver(dto);
+	}
+	
 }
