@@ -12,15 +12,17 @@
 	session.getAttribute("ID");
 %>
 
-<form method="post" action="mcontroller?action=myContent" >
+<form method="post">
 	<input type="button" value="button" onclick="location.href='inputContentView.jsp'">
-	<input type="submit" value="submit"  >
-
 </form>
-
-<form action="ucontroller?action=following" method="get">
-    <input type="text" name="followingId">
-    <input type="submit" value="following">
+<form method="post" action="ucontroller?action=logout" >
+	<input type="submit" value="로그아웃" onclick="location.href='logoutTest.jsp'">
+</form>
+<form method="post">
+	<input type="button" value="정보변경" onclick="location.href='infoChangeTest.jsp'">
+</form>
+<form method="post">
+	<input type="button" value="정보조회" onclick="location.href='userInfoTest.jsp'">
 </form>
 </body>
 </html>
