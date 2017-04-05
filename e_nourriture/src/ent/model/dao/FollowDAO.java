@@ -66,36 +66,44 @@ public class FollowDAO {
 		ResultSet rs = null;
 		Contents followingUserContent = new Contents();
 		ArrayList<Contents> followingUserContentList = new ArrayList<>();
+		String sqlcon1 = "select * from USERCONTENTS where userid=\'";
+		String sqlcon2 = "or userid=\'";
+		String sqlcon3 = "order by times";
+
+		StringBuilder sb = new StringBuilder("");
 		if (followingUserIds != null) {
 
-			for (int i = 0; i < followingUserIds.size(); i++) {
-
-				try {
-					conn = getConnection();
-					stmt = getStatement(conn);
-					String sql = "select * from USERCONTENTS where userid=\'" + followingUserIds.get(i)
-							+ "\'";
-					rs = stmt.executeQuery(sql);
-					while (rs.next()) {
-						followingUserContent.setUserId(rs.getString(1));
-						followingUserContent.setContentId(rs.getString(2));
-						followingUserContent.setContents(rs.getString(3));
-						followingUserContent.setImgURL(rs.getString(4));
-						followingUserContent.setWriteDate(rs.getString(5));
-						followingUserContent.setContentsLikeCount(rs.getInt(6));
-						
-					}
-					followingUserContentList.add(followingUserContent);
-					
-
-				} catch (Exception e) {
-					// TODO: handle exception
-				} finally {
-
-					fd.close(stmt, conn);
-
+			if (followingUserIds.size() > 1) {
+				for (int i = 1; i < followingUserIds.size(); i++) {
+					sb.append(sqlcon2 + followingUserIds.get(i));
 				}
 			}
+
+			try {
+				conn = getConnection();
+				stmt = getStatement(conn);
+				String sql = sqlcon1 + followingUserIds.get(0) + "\'" + sb.toString() + "\'" + sqlcon3;
+				System.out.println(sql + "++++++++++++++++++++++++++++++++++++++++++++");
+				rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+					followingUserContent.setUserId(rs.getString(1));
+					followingUserContent.setContentId(rs.getString(2));
+					followingUserContent.setContents(rs.getString(3));
+					followingUserContent.setImgURL(rs.getString(4));
+					followingUserContent.setWriteDate(rs.getString(5));
+					followingUserContent.setContentsLikeCount(rs.getInt(6));
+					followingUserContentList.add(followingUserContent);
+				}
+				
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			} finally {
+
+				fd.close(stmt, conn);
+
+			}
+
 			return followingUserContentList;
 
 		}
