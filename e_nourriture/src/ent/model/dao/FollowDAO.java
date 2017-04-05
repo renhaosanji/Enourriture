@@ -143,7 +143,16 @@ public class FollowDAO {
 
 	}
 	
-	public void followingUser() {
+	public void followingUser(String userId, String followingId) {
+		
+		if (isfollowedUser(userId, followingId)==false) {
+			Connection conn = null;
+			Statement stmt = null;
+			ResultSet rs = null;
+			String sql1 = "insert into USERNETWORK  from USERNETWORK where userid = \'" + userId;
+			
+		}
+		
 		
 	}
 
