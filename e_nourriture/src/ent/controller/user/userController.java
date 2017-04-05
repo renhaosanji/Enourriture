@@ -98,7 +98,7 @@ public class userController extends HttpServlet {
 
 			// 로그인 성공 페이지 이동
 			request.getRequestDispatcher("index.jsp").forward(request, response);
-			System.out.println(fs.usersFollowingContentsLoading(id)+"+++++");
+			System.out.println(fs.usersFollowingContentsLoading(id).get(0).getContents()+"+++++");
 			
 		} else {
 			System.out.println("로그인 요청 실패");

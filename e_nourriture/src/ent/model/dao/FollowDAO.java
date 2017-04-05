@@ -64,8 +64,8 @@ public class FollowDAO {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		Contents followingUserContents = new Contents();
-		
+		Contents followingUserContent = new Contents();
+		ArrayList<Contents> followingUserContentList = new ArrayList<>();
 		if (followingUserIds != null) {
 
 			for (int i = 0; i < followingUserIds.size(); i++) {
@@ -77,11 +77,16 @@ public class FollowDAO {
 							+ "\'";
 					rs = stmt.executeQuery(sql);
 					while (rs.next()) {
-						followingUserContents.setUserId(rs.getString(1));
-					//	followingUserContents.set
-						
+						followingUserContent.setUserId(rs.getString(1));
+						followingUserContent.setContentId(rs.getString(2));
+						followingUserContent.setContents(rs.getString(3));
+						followingUserContent.setImgURL(rs.getString(4));
+						followingUserContent.setWriteDate(rs.getString(5));
+						followingUserContent.setContentsLikeCount(rs.getInt(6));
 						
 					}
+					followingUserContentList.add(followingUserContent);
+					
 
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -91,7 +96,7 @@ public class FollowDAO {
 
 				}
 			}
-			return followingUserContents;
+			return followingUserContentList;
 
 		}
 
