@@ -8,16 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <form method="post" action="mcontroller?action=inputContent">
 사진>
 <input type="file" name="imgfile"><br>
 내용>
-<input type="text" name="text"><br>
+<input type="text" name="contents"><br>
 작성자>
 <input type="text" name="writer" value="<%= session.getAttribute("ID") %>" readonly>
 <br>
-작성일자>
-<input type="text" name="writeDate" ><br>
 판매물품>
 <input type="text" name="product"><br>
 판매처>

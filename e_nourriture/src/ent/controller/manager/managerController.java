@@ -20,6 +20,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import ent.model.dto.Contents;
 import ent.model.dto.ProductInfo;
+import ent.model.service.ManagerService;
 import sun.rmi.runtime.Log;
 
 public class managerController extends HttpServlet{
@@ -77,33 +78,56 @@ public class managerController extends HttpServlet{
 	protected void inputContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("ID");			//작성자
-		String text = (String)request.getAttribute("text");		//내용
-		String writeDate = (String)request.getAttribute("writeDate");
+		
+		String text = (String)request.getParameter("contents");		//내용
+	
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String writeDate = sdf.format(new Date());
 		
 		Contents contents = new Contents();
 		
+		System.out.println(id+","+text);
 		contents.setUserId(id);
 		contents.setContents(text);
 		contents.setWriteDate(writeDate);
 		
+		ManagerService ms = new ManagerService();
 		
-		String product = (String)request.getAttribute("product");
-		String productStore = (String)request.getAttribute("productStore");
-		String productStoreAddr = (String)request.getAttribute("productStoreAddr");
-		String price = (String)request.getAttribute("price");
-		String evaluation = (String)request.getAttribute("evaluation");
+		int result_inputcontents = ms.inputContents(contents);
+		int contentsid=0;
+		if(result_inputcontents!=0){
+			contentsid = ms.findID(contents);
+		} else {
+			return;
+		}
+		
+		String product = (String)request.getParameter("product");
+		String productStore = (String)request.getParameter("productStore");
+		String productStoreAddr = (String)request.getParameter("productStoreAddr");
+		String price = (String)request.getParameter("price");
+		String evaluation = (String)request.getParameter("like");
 		
 		
 		ProductInfo productInfo = new ProductInfo();
+		
+		productInfo.setUserId(id);
 		productInfo.setProductName(product);
 		productInfo.setProductStore(productStore);
 		productInfo.setProductPrice(price);
 		productInfo.setEvaluation(Integer.parseInt(evaluation));
 		productInfo.setProductStoreAddr(productStoreAddr);
+		productInfo.setContentsId(contentsid);
 		
-		System.out.println(id+","+text);
+		System.out.println(productInfo.toString());
 		
+		int result_productInfo=ms.inputProductInfo(productInfo);
 		
+		if(result_productInfo!=0){
+			System.out.println("성공");
+		} else { 
+			System.out.println("실패");
+		}
+	
 	}
 	
 	protected void upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

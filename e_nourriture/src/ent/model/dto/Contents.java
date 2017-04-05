@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Contents {
-	private String ContentsId;			//index
+	
 	private String userId;				//writer
 	private String contents;			//내용
 	private String writeDate;			//작성 시간
@@ -13,18 +13,13 @@ public class Contents {
 	private ArrayList<Communication> communication;	//댓글
 	private ProductInfo productInfo;		//상품 정보
 	
-	
-	
+
 	public Contents() {
-		contentsLikeCount=0;	
+		contentsLikeCount=0;
+		
 		
 	}
-	public String getContentsId() {
-		return ContentsId;
-	}
-	public void setContentsId(String contentsId) {
-		ContentsId = contentsId;
-	}
+	
 	public String getUserId() {
 		return userId;
 	}

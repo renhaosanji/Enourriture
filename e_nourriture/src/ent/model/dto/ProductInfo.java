@@ -1,7 +1,8 @@
 package ent.model.dto;
 
 public class ProductInfo {
-	private String contentsId;		//index
+	private int contentsId;		//index
+	private String userId;			//userId
 	private String productName;		//물품 이름
 	private String productPrice;		//물품 가격
 	private String productStore;		//물품 상점
@@ -11,12 +12,22 @@ public class ProductInfo {
 	public ProductInfo() {
 		
 	}
+	
+	public String getUserId() {
+		return userId;
+	}
 
-	public String getContentsId() {
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+
+
+	public int getContentsId() {
 		return contentsId;
 	}
 
-	public void setContentsId(String contentsId) {
+	public void setContentsId(int contentsId) {
 		this.contentsId = contentsId;
 	}
 
@@ -59,6 +70,15 @@ public class ProductInfo {
 	public void setEvaluation(int evaluation) {
 		this.evaluation = evaluation;
 	}
+
+	@Override
+	public String toString() {
+		return "ProductInfo [contentsId=" + contentsId + ", userId=" + userId + ", productName=" + productName
+				+ ", productPrice=" + productPrice + ", productStore=" + productStore + ", ProductStoreAddr="
+				+ ProductStoreAddr + ", evaluation=" + evaluation + "]";
+	}
+	
+	
 	
 	
 	
