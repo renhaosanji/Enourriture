@@ -8,10 +8,7 @@
 </head>
 <form method="post" action="ucontroller?action=order" >
 <body>
-	<tr>
-		<td>orderNumber:</td>
-		<td><input type="text" name="orderNumber"></td>
-	</tr>
+
 	<br>
 	<tr>
 		<td>userId:</td>

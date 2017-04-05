@@ -282,16 +282,16 @@ public class userController extends HttpServlet {
 	//7. 주문
 	protected void order(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("주문 시작");
-		String orderNumber = request.getParameter("orderNumber"); // 주문 번호
+		
 		String userId= request.getParameter("userId"); // ID
 		String productName= request.getParameter("productName");// 주문 물품 이름
 		String orderCount= request.getParameter("orderCount");// 주문 수량
 		String orderTime= request.getParameter("orderTime");// 주문 시간
 		String address= request.getParameter("address"); // 주소
-		System.out.println(orderNumber + "," + userId + "," + productName + "," + orderCount + "," + orderTime + "," + address);
+		System.out.println( userId + "," + productName + "," + orderCount + "," + orderTime + "," + address);
 
 		System.out.println("1");
-			Order order=new Order(orderNumber,userId,productName,orderCount,address,orderTime);
+			Order order=new Order(userId,productName,orderCount,address,orderTime);
 			System.out.println("2");
 			UserService or = new UserService();
 			System.out.println("3");
