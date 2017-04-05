@@ -58,7 +58,6 @@ public class OrderDAO {
 		return 0;
 	}
 	public int cancellation(String orderNumber, String userId){
-		System.out.println("5");
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		try {
@@ -67,7 +66,6 @@ public class OrderDAO {
 			pstmt = conn.prepareStatement(sql); 
 			pstmt.setString(1, orderNumber);	
 			pstmt.setString(2, userId);	
-			System.out.println(pstmt.executeUpdate());
 			return pstmt.executeUpdate();  
 			
 		} catch (SQLException e) {

@@ -171,6 +171,7 @@ public class userController extends HttpServlet {
 	// 4. 회원탈퇴
 	protected void userLeave(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("탈퇴를 시작합니다.");
 		String id = request.getParameter("ID");
 		String password = request.getParameter("password");
 		System.out.println(id + "," + password);
@@ -190,7 +191,7 @@ public class userController extends HttpServlet {
 		// 3. Model 요청 의뢰
 		UserService us = new UserService();
 		int isLeave = us.userLeave(id, password);
-
+		System.out.println("isLeave :" + isLeave);
 		// 4. 요청결과 받아서 응답위한 설정
 		if (isLeave != 0) {
 			// HttpSession 신규 객체
@@ -218,7 +219,7 @@ public class userController extends HttpServlet {
 			User user = us.selectOne(id);
 
 			if (user != null) {
-				System.out.println("1"+user.getUserId()+" "+user.getPhoneNumber()+" ");
+				System.out.println("1"+user.getUserId()+" "+user.getPhoneNumber()+" "+user.getUserPw());
 				request.setAttribute("user", user);
 				request.getRequestDispatcher("userInfo.jsp").forward(request, response);
 			} else {
@@ -290,7 +291,7 @@ public class userController extends HttpServlet {
 		System.out.println(orderNumber + "," + userId + "," + productName + "," + orderCount + "," + orderTime + "," + address);
 
 		System.out.println("1");
-			Order order=new Order(userId,orderNumber,productName,orderCount,address,orderTime);
+			Order order=new Order(orderNumber,userId,productName,orderCount,address,orderTime);
 			System.out.println("2");
 			UserService or = new UserService();
 			System.out.println("3");
@@ -311,9 +312,9 @@ public class userController extends HttpServlet {
 		String orderNumber = request.getParameter("orderNumber"); // 주문 번호
 		String userId= request.getParameter("userId"); // ID
 		Order order=new Order(orderNumber,userId);
-		System.out.println("2");
 		UserService or = new UserService();
 		int result = or.cancellation(order.getOrderNumber(), order.getUserId());
+		System.out.println(result);
 		if (result == 0) {
 			System.out.println("주문취소에 실패했습니다.");
 		} else {

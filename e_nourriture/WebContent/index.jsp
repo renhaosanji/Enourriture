@@ -24,5 +24,8 @@
 <form method="post">
 	<input type="button" value="Á¤º¸Á¶È¸" onclick="location.href='userInfoTest.jsp'">
 </form>
+<form method="post">
+	<input type="button" value="È¸¿øÅ»Åð" onclick="location.href='exitTest.jsp'">
+</form>
 </body>
 </html>
