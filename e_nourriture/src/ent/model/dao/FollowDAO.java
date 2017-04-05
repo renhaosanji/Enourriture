@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.apache.tomcat.util.buf.UEncoder;
+
 import ent.model.dto.Contents;
 
 public class FollowDAO {
@@ -147,9 +149,22 @@ public class FollowDAO {
 		
 		if (isfollowedUser(userId, followingId)==false) {
 			Connection conn = null;
-			Statement stmt = null;
+			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			String sql1 = "insert into USERNETWORK  from USERNETWORK where userid = \'" + userId;
+			String sql1 = "insert into USERNETWORK(userid, FOLLOWINGUSERID)  valus(?,?)";
+			
+			try {
+				conn = getConnection();
+				pstmt = conn.prepareStatement(sql1);
+				pstmt.setString(1, userId);
+				pstmt.setString(2, followingId);
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}finally {
+				fd.close(pstmt,conn);
+			}
 			
 		}
 		
