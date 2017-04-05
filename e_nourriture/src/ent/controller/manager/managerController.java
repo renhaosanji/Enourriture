@@ -84,6 +84,8 @@ public class managerController extends HttpServlet{
 		}
 	}
 	
+	
+	
 	// 1. 글 등록
 	protected void inputContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -177,5 +179,75 @@ public class managerController extends HttpServlet{
 	protected void likeCountPlus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 			
+	}
+	
+	protected void updateContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+				
+				String contentsid = (String)request.getAttribute("contentsid");
+				// 작성자
+				HttpSession session = request.getSession();
+				String id = (String)session.getAttribute("ID");			
+				
+				// 작성일
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+				String writeDate = sdf.format(new Date());
+				
+				// 이미지
+				Contents contents = new Contents();
+				ServletContext context = getServletContext();
+				String addr = (String)request.getRealPath("image");
+				System.out.println(addr);
+				String imgURL = addr.substring(addr.indexOf("WebContent")+11, addr.length());
+				System.out.println(imgURL);
+				MultipartRequest multi = new MultipartRequest(request, addr, 5 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
+				String name = multi.getFilesystemName("imgfile");
+				System.out.println(name);
+				
+				// 내용
+				String text = (String)multi.getParameter("contents");
+				
+				contents.setUserId(id);
+				contents.setContents(text);
+				contents.setWriteDate(writeDate);
+				contents.setImgURL(imgURL+"\\"+name);
+				
+				System.out.println(contents.toString());
+				
+				ManagerService ms = new ManagerService();
+				int result_inputcontents = ms.updateContents(contents);
+				
+				if(result_inputcontents==0){
+					return;
+				} 
+				
+				// 상품 정보 추출
+				String product = (String)multi.getParameter("product");
+				String productStore = (String)multi.getParameter("productStore");
+				String productStoreAddr = (String)multi.getParameter("productStoreAddr");
+				String price = (String)multi.getParameter("price");
+				String evaluation = (String)multi.getParameter("like");
+				
+				// 상품 정보 등록
+				ProductInfo productInfo = new ProductInfo();
+				
+				productInfo.setUserId(id);
+				productInfo.setProductName(product);
+				productInfo.setProductStore(productStore);
+				productInfo.setProductPrice(price);
+				productInfo.setEvaluation(Integer.parseInt(evaluation));
+				productInfo.setProductStoreAddr(productStoreAddr);
+				productInfo.setContentsId(Integer.parseInt(contentsid));
+				
+				contents.setProductInfo(productInfo);
+				System.out.println(productInfo.toString());
+				
+				
+				int result_productInfo=ms.updateProductInfo(productInfo);
+				if(result_productInfo!=0){
+					System.out.println("성공");
+				} else { 
+					System.out.println("실패");
+				}
+		
 	}
 }

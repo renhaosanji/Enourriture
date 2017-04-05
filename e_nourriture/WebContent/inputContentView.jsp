@@ -29,8 +29,7 @@
 <input type="text" name="like"><br>
 
 <input type="submit" value="µî·Ï">
+
 </form>
-
-
 </body>
 </html>
