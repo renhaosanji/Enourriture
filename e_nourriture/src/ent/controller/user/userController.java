@@ -53,7 +53,7 @@ public class userController extends HttpServlet {
 				order(request, response);
 				break;
 			case "following":
-				following(request, response)
+				following(request, response);
 				break;
 			default:
 				System.out.println("해당 요청이 없습니다.");
