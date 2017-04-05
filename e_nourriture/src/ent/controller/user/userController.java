@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import ent.model.dto.Order;
 import ent.model.dto.User;
+import ent.model.service.FollowService;
 import ent.model.service.UserService;
 
 /**
@@ -82,6 +83,8 @@ public class userController extends HttpServlet {
 		}
 		// 3. Model 요청 의뢰
 		UserService us = new UserService();
+		FollowService fs = new FollowService();
+		
 		boolean isLogin = us.login(id, password);
 
 		// 4. 요청결과 받아서 응답위한 설정
@@ -95,6 +98,8 @@ public class userController extends HttpServlet {
 
 			// 로그인 성공 페이지 이동
 			request.getRequestDispatcher("index.jsp").forward(request, response);
+			System.out.println(fs.usersContentsLoading(id)+"+++++");
+			
 		} else {
 			System.out.println("로그인 요청 실패");
 			request.setAttribute("message", "로그인 정보를 확인하시기 바랍니다.");

@@ -36,17 +36,17 @@ public class FollowDAO {
 		Statement stmt=null;
 		String sql = "select followingUserId from usernetwork where userid=\'"+userid+"\'";
 		ResultSet rs =null;
-		 System.out.println("+++++++++++++++++++++++"+sql+"++++++++++++++++++++");
-		ArrayList<String> followingUserIds = new ArrayList<>();
+        ArrayList<String> followingUserIds = new ArrayList<>();
 
 		try {
 			conn = getConnection();
-			rs = stmt.executeQuery(sql);
-          while (rs.next()) {
-			followingUserIds.add(rs.getString(0));
+			stmt = getStatement(conn);
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+			followingUserIds.add(rs.getString(1));
 			
 		}
-          System.out.println("+++++++++++++++++++++++"+followingUserIds.toString()+"++++++++++++++++++++");
+
 		 return followingUserIds;	
 		} catch (SQLException e) {
 			e.printStackTrace();
