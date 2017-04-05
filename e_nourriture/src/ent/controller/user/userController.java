@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import ent.model.dto.Order;
 import ent.model.dto.User;
+import ent.model.service.FollowService;
 import ent.model.service.UserService;
 import ent.model.dto.Communication;
 /**
