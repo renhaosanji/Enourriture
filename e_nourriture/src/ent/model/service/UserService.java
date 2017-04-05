@@ -38,7 +38,7 @@ public class UserService {
 		return odao.purchase(dto);
 	}
 	public int cancellation(String orderNumber, String userId){
-		System.out.println("4");
+
 		return odao.cancellation(orderNumber,userId );
 	}
 	public int insertComSender(Communication dto){
