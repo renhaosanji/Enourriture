@@ -60,7 +60,7 @@ public class OrderDAO {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		try {
-			conn = getConnection();
+			conn=getConnection();
 			String sql = "delete ORDERINFO where OrderNumber=? and userId=?";
 			pstmt = conn.prepareStatement(sql); 
 			pstmt.setString(1, orderNumber);	

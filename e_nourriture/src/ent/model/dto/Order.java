@@ -77,6 +77,14 @@ public class Order {
 		this.address = address;
 	}
 
+	@Override
+	public String toString() {
+		return "Order [orderNumber=" + orderNumber + ", userId=" + userId + ", productName=" + productName
+				+ ", orderCount=" + orderCount + ", orderTime=" + orderTime + ", address=" + address + "]";
+	}
+
+	
+	
 	
 	
 	

@@ -345,8 +345,7 @@ public class userController extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		System.out.println("댓글등록 시작");
 		request.setCharacterEncoding("euc-kr");
-		
-		
+	
 		String contentsId = request.getParameter("contentsId");
 		String comments = request.getParameter("comments");
 		String senderId = request.getParameter("senderId");
