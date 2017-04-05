@@ -12,9 +12,12 @@
 	session.getAttribute("ID");
 %>
 
-<form method="post">
+<form method="post" action="mcontroller?action=myContent" >
 	<input type="button" value="button" onclick="location.href='inputContentView.jsp'">
+	<input type="submit" value="submit"  >
+
 </form>
+
 <form method="post" action="ucontroller?action=logout" >
 	<input type="submit" value="·Î±×¾Æ¿ô" onclick="location.href='logoutTest.jsp'">
 </form>
