@@ -128,7 +128,7 @@ public class managerController extends HttpServlet{
 		String productStoreAddr = (String)multi.getParameter("productStoreAddr");
 		String price = (String)multi.getParameter("price");
 		String evaluation = (String)multi.getParameter("like");
-		
+		System.out.println(evaluation);
 		// 상품 정보 등록
 		ProductInfo productInfo = new ProductInfo();
 		
