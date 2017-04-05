@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<form method="post" action="mcontroller?action=inputContent">
+<form method="post" action="mcontroller?action=inputContent" enctype="multipart/form-data">
 사진>
 <input type="file" name="imgfile"><br>
 내용>

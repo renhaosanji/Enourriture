@@ -31,4 +31,6 @@ public class ManagerService {
 		return product.inputProductInfo(productInfo);
 	}
 	
+	
+	
 }

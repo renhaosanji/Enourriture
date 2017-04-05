@@ -70,6 +70,14 @@ public class Contents {
 	public void setContentId(String contentId) {
 		this.contentId = contentId;
 	}
+
+	@Override
+	public String toString() {
+		return "Contents [userId=" + userId + ", contents=" + contents + ", writeDate=" + writeDate + ", imgURL="
+				+ imgURL + ", contentsLikeCount=" + contentsLikeCount + ", communication=" + communication
+				+ ", productInfo=" + productInfo + ", contentId=" + contentId + "]";
+	}
+	
 	
 	
 }
