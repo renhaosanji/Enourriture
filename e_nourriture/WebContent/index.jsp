@@ -16,5 +16,10 @@
 	<input type="button" value="button" onclick="location.href='inputContentView.jsp'">
 
 </form>
+
+<form action="ucontroller?action=following" method="get">
+    <input type="text" name="followingId">
+    <input type="submit" value="following">
+</form>
 </body>
 </html>

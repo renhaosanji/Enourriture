@@ -52,6 +52,9 @@ public class userController extends HttpServlet {
 			case "order":
 				order(request, response);
 				break;
+			case "following":
+				following(request, response)
+				break;
 			default:
 				System.out.println("해당 요청이 없습니다.");
 				break;
@@ -280,6 +283,11 @@ public class userController extends HttpServlet {
 			}
 
 			request.getRequestDispatcher("loginView.jsp").forward(request, response);
+	}
+	
+	
+	protected void following(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
 	}
 	
 

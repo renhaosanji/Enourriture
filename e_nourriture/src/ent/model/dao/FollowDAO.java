@@ -64,7 +64,7 @@ public class FollowDAO {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		
+
 		ArrayList<Contents> followingUserContentList = new ArrayList<>();
 		String sqlcon1 = "select * from USERCONTENTS where userid=\'";
 		String sqlcon2 = "or userid=\'";
@@ -94,10 +94,10 @@ public class FollowDAO {
 					followingUserContent.setContentsLikeCount(rs.getInt(6));
 					followingUserContentList.add(followingUserContent);
 				}
-				
 
 			} catch (Exception e) {
 				// TODO: handle exception
+				e.printStackTrace();
 			} finally {
 
 				fd.close(stmt, conn);
@@ -109,6 +109,42 @@ public class FollowDAO {
 		}
 
 		return null;
+	}
+
+	public boolean isfollowedUser(String userId, String followingId) {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql1 = "select FOLLOWINGUSERID from USERNETWORK where userid = \'" + userId;
+		try {
+
+			conn = getConnection();
+			stmt = getStatement(conn);
+			rs = stmt.executeQuery(sql1);
+			while (rs.next()) {
+
+				if (followingId == rs.getString(1)) {
+					return true;
+				}
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+
+		} finally {
+
+			fd.close(stmt, conn);
+
+		}
+
+		return false;
+
+	}
+	
+	public void followingUser() {
+		
 	}
 
 }
