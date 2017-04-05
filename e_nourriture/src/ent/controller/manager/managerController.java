@@ -104,7 +104,7 @@ public class managerController extends HttpServlet{
 		System.out.println(addr);
 		String imgURL = addr.substring(addr.indexOf("WebContent")+11, addr.length());
 		System.out.println(imgURL);
-		MultipartRequest multi = new MultipartRequest(request, addr, 5 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, addr, 5 * 1024 * 1024, "euc-kr", new DefaultFileRenamePolicy());
 		String name = multi.getFilesystemName("imgfile");
 		System.out.println(name);
 		
@@ -132,7 +132,16 @@ public class managerController extends HttpServlet{
 		String productStore = (String)multi.getParameter("productStore");
 		String productStoreAddr = (String)multi.getParameter("productStoreAddr");
 		String price = (String)multi.getParameter("price");
-		String evaluation = (String)multi.getParameter("like");
+		int evaluation=0;
+		
+		for(int i=0;i<5;i++) {
+			
+			if(((String)multi.getParameter("like"+(i+1)))!=null&&((String)multi.getParameter("like"+(i+1))).equals("on")){
+				evaluation=i+1;
+				break;
+			}
+		}
+		evaluation=6-evaluation;
 		System.out.println(evaluation);
 		// 상품 정보 등록
 		ProductInfo productInfo = new ProductInfo();
@@ -141,7 +150,7 @@ public class managerController extends HttpServlet{
 		productInfo.setProductName(product);
 		productInfo.setProductStore(productStore);
 		productInfo.setProductPrice(price);
-		productInfo.setEvaluation(Integer.parseInt(evaluation));
+		productInfo.setEvaluation(evaluation);
 		productInfo.setProductStoreAddr(productStoreAddr);
 		productInfo.setContentsId(contentsid);
 		
@@ -176,8 +185,11 @@ public class managerController extends HttpServlet{
 			request.getRequestDispatcher("myContents.jsp").forward(request, response);
 	}
 	
-	protected void likeCountPlus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ArrayList<Contents> getList() throws ServletException, IOException {
+			
+		ManagerService ms = new ManagerService();
 		
+		return ms.getList();
 			
 	}
 	

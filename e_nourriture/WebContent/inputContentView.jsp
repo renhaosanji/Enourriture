@@ -172,16 +172,16 @@ label.star:before {
 			<fieldset>
 				<p>음식을 평가해주세요!</p>
 				<div class="stars">
-					<input class="star star-5" id="star-5-2" type="radio" name="like" />
-					<label class="star star-5" for="star-5-2"></label> <input
-						class="star star-4" id="star-4-2" type="radio" name="like" /> <label
-						class="star star-4" for="star-4-2"></label> <input
-						class="star star-3" id="star-3-2" type="radio" name="like" /> <label
-						class="star star-3" for="star-3-2"></label> <input
-						class="star star-2" id="star-2-2" type="radio" name="like" /> <label
-						class="star star-2" for="star-2-2"></label> <input
-						class="star star-1" id="star-1-2" type="radio" name="like" /> <label
-						class="star star-1" for="star-1-2"></label>
+					 <input class="star star-5" id="star-5-2" type="radio" name="like1" />
+					 <label class="star star-5" for="star-5-2"></label>
+					 <input class="star star-4" id="star-4-2" type="radio" name="like2" /> 
+					 <label	class="star star-4" for="star-4-2"></label> 
+					 <input class="star star-3" id="star-3-2" type="radio" name="like3" /> 
+					 <label class="star star-3" for="star-3-2"></label> 
+					 <input class="star star-2" id="star-2-2" type="radio" name="like4" /> 
+					 <label class="star star-2" for="star-2-2"></label> 
+					 <input class="star star-1" id="star-1-2" type="radio" name="like5" /> 
+					 <label class="star star-1" for="star-1-2"></label>
 
 				</div>
 			</fieldset>
@@ -202,7 +202,7 @@ label.star:before {
 
 
 			<footer>
-				<button type="submit" class="button">Upload!</button>
+				<button type="submit" class="button" onclick="location.href='index.jsp'">Upload!</button>
 			</footer>
 		</form>
 
@@ -295,11 +295,9 @@ label.star:before {
 	</script>
 
 
-=======
-<input type="submit" value="등록">
 
 </form>
->>>>>>> branch 'master' of https://github.com/renhaosanji/Enourriture
+
 </body>
 
 

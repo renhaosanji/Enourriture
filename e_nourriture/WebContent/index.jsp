@@ -1,11 +1,8 @@
-
-
-
-
-
-
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ page import="ent.controller.manager.managerController" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="ent.model.dto.Contents" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,25 +35,12 @@
 <!-- favicon -->
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
-
 <link rel="stylesheet" href="assets/style.css">
-
-
 
 </head>
 
 <body>
-
-	<%
-		session.getAttribute("ID");
-	%>
-
-<<<<<<< HEAD
-
-
 	<div class="topbar animated fadeInLeftBig"></div>
-
 	<!-- Header Starts -->
 	<div class="navbar-wrapper">
 		<div class="container">
@@ -69,35 +53,30 @@
 						<a class="navbar-brand" href="#home"><img
 							src="images/logo.png" alt="logo"></a>
 						<!-- #Logo Ends -->
-
-
 						<button type="button" class="navbar-toggle collapsed"
 							data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">Toggle navigation</span> <span
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-
 					</div>
-
-
 					<!-- Nav Starts -->
 					<div class="navbar-collapse  collapse">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="#works">Time Line</a></li>
 							<li><a href="#about">My Page</a></li>
-
 							<li><a href="inputContentView.jsp">Write</a></li>
 							<li><a href="userInfoTest.jsp">scaninfo</a></li>
 							<li><form method="post" action="ucontroller?action=logout">
-									<input type="submit" value="logout"
-										onclick="location.href='logoutTest.jsp'">
+							<li><a href="logoutTest.jsp">logout</a></li>
+<!-- 									<input type="submit" value="logout"
+										onclick="location.href='logoutTest.jsp'"> -->
 								</form></li>
-							<li><form action="post"
+							<!-- <li><form action="post"
 									action="ucontroller?action=following">
 									<input type="text" name="followingUserId"> <input
 										type="submit" value="following">
-								</form></li>
+								</form></li> -->
 
 						</ul>
 
@@ -110,34 +89,38 @@
 	</div>
 	<!-- #Header Starts -->
 
-
-
-
-
-
-
 	<!-- works -->
 	<div id="works" class=" clearfix grid">
 
-
-		<figure class="effect-oscar  wowload fadeIn"> <img
-			src="images/food/1.jpg" alt="img01" /> <figcaption>
-		<h2>Nature</h2>
-		<p>
-			Lily likes to play with crayons and pencils<br> <a
-				href="images/food/1.jpg" title="1" data-gallery>View more</a>
-		</p>
-		</figcaption> </figure>
-		<figure class="effect-oscar  wowload fadeInUp"> <img
-			src="images/food/2.jpg" alt="img01" /> <figcaption>
+	<!-- ë””ë¹„ì—ì„œ ì´ë¯¸ì§€ ì •ë³´ ë¹¼ì™€ì„œ í•˜ë‚˜ì”© ë°•ê¸°  -->
+	
+<%
+		managerController mc = new managerController();
+		ArrayList<Contents> list = mc.getList();
+		for(int i=0;i<list.size();i++){
+%>
+			<figure class="effect-oscar  wowload fadeIn"> 
+				<img src="<%=list.get(i).getImgURL() %>" alt="img01" /> 
+				<figcaption>
+				<h2><%=list.get(i).getContentId() %></h2>
+				<p>
+					<%=list.get(i).getContents() %><br> <a href="<%=list.get(i).getImgURL() %>" title="1" data-gallery>View more</a>
+				</p>
+				</figcaption> 
+			</figure>
+<%
+		}
+%>
+		<!-- <figure class="effect-oscar  wowload fadeInUp"> 
+		<img src="images/food/2.jpg" alt="img01" /> <figcaption>
 		<h2>Events</h2>
 		<p>
 			Lily likes to play with crayons and pencils<br> <a
 				href="images/food/2.jpg" title="1" data-gallery>View more</a>
 		</p>
 		</figcaption> </figure>
-		<figure class="effect-oscar  wowload fadeInUp"> <img
-			src="images/food/3.jpg" alt="img01" /> <figcaption>
+		<figure class="effect-oscar  wowload fadeInUp"> 
+		<img src="images/food/3.jpg" alt="img01" /> <figcaption>
 		<h2>music</h2>
 		<p>
 			Lily likes to play with crayons and pencils<br> <a
@@ -216,7 +199,7 @@
 			Lily likes to play with crayons and pencils<br> <a
 				href="images/portfolio/12.jpg" title="1" data-gallery>View more</a>
 		</p>
-		</figcaption> </figure>
+		</figcaption> </figure> -->
 
 
 
@@ -228,8 +211,8 @@
 
 
 
-	<!-- Cirlce Starts -->
-	<div id="about" class="container spacer about">
+	 <!-- Cirlce Starts -->
+	<!-- <div id="about" class="container spacer about">
 		<h2 class="text-center wowload fadeInUp">Creative digital agency
 			based on London</h2>
 		<div class="row">
@@ -270,11 +253,11 @@
 			</ul>
 		</div>
 	</div>
-	<!-- #Cirlce Ends -->
+	#Cirlce Ends
 
 
 
-	<!-- About Starts -->
+	About Starts
 	<div class="highlight-info">
 		<div class="overlay spacer">
 			<div class="container">
@@ -299,7 +282,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- About Ends -->
+	About Ends
 
 
 
@@ -367,14 +350,14 @@
 						</div>
 					</div>
 
-					<!-- Indicators -->
+					Indicators
 					<ol class="carousel-indicators">
 						<li data-target="#carousel-testimonials" data-slide-to="0"
 							class="active"></li>
 						<li data-target="#carousel-testimonials" data-slide-to="1"></li>
 						<li data-target="#carousel-testimonials" data-slide-to="2"></li>
 					</ol>
-					<!-- Indicators -->
+					Indicators
 				</div>
 
 
@@ -383,7 +366,7 @@
 		</div>
 
 
-		<!-- team -->
+		team
 		<h3 class="text-center  wowload fadeInUp">Our team</h3>
 		<p class="text-center  wowload fadeInLeft">Our creative team that
 			is making everything possible</p>
@@ -438,11 +421,11 @@
 
 
 		</div>
-		<!-- team -->
+		team
 
 	</div>
 
-	<!--Contact Starts-->
+	Contact Starts
 	<div id="contact" class="spacer">
 
 		<div class="container contactform center">
@@ -462,8 +445,8 @@
 
 
 		</div>
-	</div>
-	<!--Contact Ends-->
+	</div> -->
+	Contact Ends -->
 
 
 
@@ -565,32 +548,7 @@
 		}
 	</script>
 
-=======
-<form method="post" action="mcontroller?action=myContent" >
-	<input type="button" value="button" onclick="location.href='inputContentView.jsp'">
-	<input type="submit" value="submit"  >
 
-</form>
-
-<form method="post" action="ucontroller?action=logout" >
-	<input type="submit" value="·Î±×¾Æ¿ô" onclick="location.href='logoutTest.jsp'">
-</form>
-<form method="post">
-	<input type="button" value="Á¤º¸º¯°æ" onclick="location.href='infoChangeTest.jsp'">
-</form>
-<form method="post">
-	<input type="button" value="Á¤º¸Á¶È¸" onclick="location.href='userInfoTest.jsp'">
-</form>
-
-<form method="post">
-	<input type="button" value="È¸¿øÅ»Åð" onclick="location.href='exitTest.jsp'">
-=======
-<form action="post" action="ucontroller?action=following">
- <input type="text" name="followingUserId">
- <input type="submit" value="following">
-
-</form>
->>>>>>> branch 'master' of https://github.com/renhaosanji/Enourriture
 </body>
 </html>
 

@@ -119,7 +119,6 @@ public class ContentsDAO {
 	}
 	
 	// 2. 내 글 조회
-	
 	public ArrayList<Contents> myContents(String userid){
 		ArrayList<Contents> list = new ArrayList<Contents>();
 		
@@ -182,6 +181,46 @@ public class ContentsDAO {
 
 		return list;
 		
+	}
+	
+	public ArrayList<Contents> getList(){
+		
+		ArrayList<Contents> list = new ArrayList<Contents>();
+		
+		Connection conn=null;
+		Statement stmt=null;
+		Statement stmt2=null;
+		
+		String sql = "select contentsid,text, imgurl from usercontents";
+		ResultSet rs =null;
+		ResultSet rs_product=null;
+		String text=null;
+		String imgurl=null;
+		String times=null;
+		int contentsid=0;
+		try {
+			conn = getConnection();
+			stmt = getStatement(conn);
+			stmt2 = getStatement(conn);
+			rs = stmt.executeQuery(sql);
+			System.out.println(rs.next());
+			while(rs.next()){
+				contentsid=rs.getInt(1);
+				text=rs.getString(2);
+				imgurl=rs.getString(3);
+				Contents contents = new Contents();
+				contents.setContentId(contentsid+"");
+				contents.setContents(text);
+				contents.setImgURL(imgurl);
+			
+				list.add(contents);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return list;
 	}
 
 }

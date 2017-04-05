@@ -42,12 +42,15 @@ public class ManagerService {
 	}
 	
 	
-	
 	//2. 내 글들 조회
 	public ArrayList<Contents> myContents(String userid){
 		return content.myContents(userid);
 	}
 	
+	//3. 전체 글 조회
+	public ArrayList<Contents> getList(){
+		return content.getList();
+	}
 	
 	
 }
