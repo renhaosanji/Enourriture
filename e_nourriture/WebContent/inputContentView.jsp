@@ -104,6 +104,7 @@ label.star:before {
 </head>
 
 
+<<<<<<< HEAD
 <body class="bg-cyan1">
 	<div class="body body-s">
 <form  class="sky-form" method="post" action="mcontroller?action=inputContent" enctype="multipart/form-data">
@@ -294,6 +295,11 @@ label.star:before {
 	</script>
 
 
+=======
+<input type="submit" value="µî·Ï">
+
+</form>
+>>>>>>> branch 'master' of https://github.com/renhaosanji/Enourriture
 </body>
 
 

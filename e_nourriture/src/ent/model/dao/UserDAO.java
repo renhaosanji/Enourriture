@@ -144,8 +144,9 @@ public class UserDAO {
 
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		String sql = "delete userinfo where userId=? and userPw=?";
+		String sql = "delete USERINFO where userId=? and userPw=?";
 		try {
+			System.out.println("탈퇴를 시작합니다. delete 메소드에 들어왔습니다.");
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
@@ -217,6 +218,7 @@ public class UserDAO {
 		
 		return 0;
 	}
+	
 	
 
 }

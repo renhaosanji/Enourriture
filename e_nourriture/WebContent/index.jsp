@@ -52,6 +52,7 @@
 		session.getAttribute("ID");
 	%>
 
+<<<<<<< HEAD
 
 
 	<div class="topbar animated fadeInLeftBig"></div>
@@ -564,6 +565,32 @@
 		}
 	</script>
 
+=======
+<form method="post" action="mcontroller?action=myContent" >
+	<input type="button" value="button" onclick="location.href='inputContentView.jsp'">
+	<input type="submit" value="submit"  >
+
+</form>
+
+<form method="post" action="ucontroller?action=logout" >
+	<input type="submit" value="·Î±×¾Æ¿ô" onclick="location.href='logoutTest.jsp'">
+</form>
+<form method="post">
+	<input type="button" value="Á¤º¸º¯°æ" onclick="location.href='infoChangeTest.jsp'">
+</form>
+<form method="post">
+	<input type="button" value="Á¤º¸Á¶È¸" onclick="location.href='userInfoTest.jsp'">
+</form>
+
+<form method="post">
+	<input type="button" value="È¸¿øÅ»Åð" onclick="location.href='exitTest.jsp'">
+=======
+<form action="post" action="ucontroller?action=following">
+ <input type="text" name="followingUserId">
+ <input type="submit" value="following">
+
+</form>
+>>>>>>> branch 'master' of https://github.com/renhaosanji/Enourriture
 </body>
 </html>
 

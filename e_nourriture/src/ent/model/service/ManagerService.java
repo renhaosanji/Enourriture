@@ -33,6 +33,17 @@ public class ManagerService {
 		return product.inputProductInfo(productInfo);
 	}
 	
+	public int updateContents(Contents contents){
+		return content.updateContents(contents);
+	}
+	
+	public int updateProductInfo(ProductInfo productInfo){
+		return product.updateProductInfo(productInfo);
+	}
+	
+	
+	
+	//2. 내 글들 조회
 	public ArrayList<Contents> myContents(String userid){
 		return content.myContents(userid);
 	}

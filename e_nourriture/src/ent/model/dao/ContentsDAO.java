@@ -92,6 +92,32 @@ public class ContentsDAO {
 		
 	}
 	
+	public int updateContents(Contents contents){
+		
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql = "update usercontents set text=?. imgurl=?, times=? where contentsid='"+contents.getContentId()+"'";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, contents.getContents());
+			pstmt.setString(2, contents.getImgURL());
+			pstmt.setString(3, contents.getWriteDate());
+			
+			return pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		
+			fd.close(pstmt,conn);
+			
+		}
+		
+		return 0;
+		
+	}
+	
 	// 2. 내 글 조회
 	
 	public ArrayList<Contents> myContents(String userid){
