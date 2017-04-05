@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import ent.model.dto.Order;
 import ent.model.dto.User;
+import ent.model.service.FollowService;
 import ent.model.service.UserService;
 import ent.model.dto.Communication;
 /**
@@ -431,7 +432,9 @@ public class userController extends HttpServlet {
 		
 	}
 	protected void following(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		FollowService fs = new FollowService();
 		
+		fs.followingUser("id02", "id04");
 	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse

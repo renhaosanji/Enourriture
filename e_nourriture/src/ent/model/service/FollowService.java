@@ -17,4 +17,8 @@ public class FollowService {
 		System.out.println("++++++++++++++++++++++++++++++++");
 		return followDAO.usersFollowingContentsLoading(followDAO.usersFollowingIdListLoading(userId));
 	}
+	
+	public void followingUser(String userId, String followingId) {
+		followDAO.followingUser(userId, followingId);
+	}
 }
