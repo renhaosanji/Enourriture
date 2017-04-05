@@ -66,6 +66,7 @@ public class userController extends HttpServlet {
 			case "following":
 				following(request, response);
 				break;
+			
 			default:
 				System.out.println("해당 요청이 없습니다.");
 				break;
@@ -457,5 +458,7 @@ public class userController extends HttpServlet {
 		request.setCharacterEncoding("EUC-KR");
 		process(request, response);
 	}
+	
+	
 
 }

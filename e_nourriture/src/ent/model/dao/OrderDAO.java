@@ -35,16 +35,15 @@ public class OrderDAO {
 		System.out.println("OrderDAO 까지 잘 들어왔어");
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		String sql = "insert into ORDERINFO values(?,?,?,?,?,?)";
+		String sql = "insert into ORDERINFO values(?,order_seq.nextVal,?,?,?,?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, order.getUserId());
-			pstmt.setString(2, order.getOrderNumber());
-			pstmt.setString(3, order.getProductName());
-			pstmt.setString(4, order.getOrderCount());
-			pstmt.setString(5,order.getAddress());
-			pstmt.setString(6,order.getOrderTime());
+			pstmt.setString(2, order.getProductName());
+			pstmt.setString(3, order.getOrderCount());
+			pstmt.setString(4,order.getAddress());
+			pstmt.setString(5,order.getOrderTime());
 			System.out.println("pstmt에 값넣고 있어 ");
 			return pstmt.executeUpdate();
 			

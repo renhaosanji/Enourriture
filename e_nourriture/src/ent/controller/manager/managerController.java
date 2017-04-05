@@ -53,6 +53,7 @@ public class managerController extends HttpServlet{
 		 * 3. 글 삭제
 		 * 4. 내 글 조회
 		 * 5. 주문 정보 확인
+		 * 6. 좋아요
 		 */
 		switch(action){
 		case "inputContent":
@@ -74,6 +75,10 @@ public class managerController extends HttpServlet{
 		case "myOrder":
 			System.out.println("upload");
 //			inputContent(request,response);
+			break;
+		case "likeCountPlus":
+			System.out.println("upload");
+//			likeCountPlus(request,response);
 			break;
 			
 		}
@@ -169,4 +174,8 @@ public class managerController extends HttpServlet{
 			request.getRequestDispatcher("myContents.jsp").forward(request, response);
 	}
 	
+	protected void likeCountPlus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+			
+	}
 }
