@@ -30,26 +30,22 @@ public class OrderDAO {
 		}
 		return stmt;
 	}
+	//주문
 	public int purchase(Order order){
-		String OrderNumber;	//주문 번호
-		 String userId;		//ID
-		 String productName;	//주문 물품 이름
-		 String orderCount;		//주문 수량
-		 String orderTime;	//주문 시간
-		 String Address;		//주소
+		System.out.println("OrderDAO 까지 잘 들어왔어");
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		String sql = "insert into Order values(?,?,?,?,?,?)";
+		String sql = "insert into ORDERINFO values(?,?,?,?,?,?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, order.getOrderNumber());
-			pstmt.setString(2, order.getUserId());
+			pstmt.setString(1, order.getUserId());
+			pstmt.setString(2, order.getOrderNumber());
 			pstmt.setString(3, order.getProductName());
 			pstmt.setString(4, order.getOrderCount());
-			pstmt.setString(5,order.getOrderTime() );
-			pstmt.setString(6,order.getAddress() );
-			
+			pstmt.setString(5,order.getAddress());
+			pstmt.setString(6,order.getOrderTime());
+			System.out.println("pstmt에 값넣고 있어 ");
 			return pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -58,45 +54,29 @@ public class OrderDAO {
 		
 			fd.close(pstmt,conn);
 			
-		}
-		
+		}	
 		return 0;
-		
 	}
-}
-/*
- * 	private String OrderNumber;	//주문 번호
-	private String userId;		//ID
-	private String productName;	//주문 물품 이름
-	private int orderCount;		//주문 수량
-	private String orderTime;	//주문 시간
-	private String Address;		//주소
-	public int join(User user){
-		
+	public int cancellation(String orderNumber, String userId){
+		System.out.println("5");
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		String sql = "insert into userinfo values(?,?,?,?,?)";s
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user.getUserId());
-			pstmt.setString(2, user.getUserPw());
-			pstmt.setString(3, user.getNickname());
-			pstmt.setString(4, user.getPhoneNumber());
-			pstmt.setString(5, user.getEmail());
-			
-			return pstmt.executeUpdate();
+			String sql = "delete ORDERINFO where OrderNumber=? and userId=?";
+			pstmt = conn.prepareStatement(sql); 
+			pstmt.setString(1, orderNumber);	
+			pstmt.setString(2, userId);	
+			System.out.println(pstmt.executeUpdate());
+			return pstmt.executeUpdate();  
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-		
+		} finally {	
 			fd.close(pstmt,conn);
-			
-		}
-		
+		}	
 		return 0;
-		
 	}
- * */
+}
+
  
