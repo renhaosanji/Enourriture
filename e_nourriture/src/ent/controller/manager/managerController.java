@@ -1,11 +1,9 @@
 package ent.controller.manager;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,20 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import ent.model.dto.Contents;
 import ent.model.dto.ProductInfo;
+import ent.model.service.FollowService;
 import ent.model.service.ManagerService;
-import sun.rmi.runtime.Log;
 
 public class managerController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -206,6 +198,20 @@ public class managerController extends HttpServlet{
 		return ms.myContents(userid);
 			
 	}
+	
+	
+	public ArrayList<Contents> getFollowContents(HttpServletRequest request) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("ID");
+		
+		FollowService fs = new FollowService();
+		
+		return fs.usersFollowingContentsLoading(id);
+			
+	}
+	
+	
 	
 	protected void updateContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
