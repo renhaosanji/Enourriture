@@ -12,12 +12,14 @@ import java.util.ArrayList;
 
 
 import ent.model.dao.CommunicationDAO;
+import ent.model.dao.ContentsDAO;
 public class UserService {
 	
 	private static UserService service = new UserService();
 	private UserDAO udao=new UserDAO();
 	private OrderDAO odao=new OrderDAO();
-	private CommunicationDAO cdao=new CommunicationDAO();;
+	private CommunicationDAO cdao=new CommunicationDAO();
+	private ContentsDAO condao = new ContentsDAO();
 	
 	public UserService(){
 
@@ -66,5 +68,9 @@ public class UserService {
 	} 
 	public ArrayList<User> userContents(String userid){
 		return udao.userContents(userid);
+	}
+	
+	public Contents pageView(String contentsId){
+		return condao.getContents(contentsId);
 	}
 }

@@ -226,4 +226,67 @@ public ArrayList<Contents> getList(String userid){
 		return list;
 	}
 
+public Contents getContents(String contentsId){
+	
+	Connection conn=null;
+	Statement stmt=null;
+	Statement stmt2=null;
+	
+	String sql = "select * from usercontents where contentsid="+contentsId;
+	String sql_product = "select productionname,productionprice,sellername,selleraddress,evaluation from contentsinfodb where contentsid="+contentsId;
+	ResultSet rs =null;
+	ResultSet rs_product=null;
+	String userid=null;
+	String text=null;
+	String imgurl=null;
+	String times=null;
+	int contentslikecount=0;
+	try {
+		conn = getConnection();
+		stmt = getStatement(conn);
+		stmt2 = getStatement(conn);
+		rs = stmt.executeQuery(sql);
+		
+		Contents contents = new Contents();
+		while(rs.next()){
+			userid = rs.getString(1);
+			text=rs.getString(3);
+			imgurl=rs.getString(4);
+			times=rs.getString(5);
+			contentslikecount = rs.getInt(6);
+			System.out.println(userid+","+text+","+imgurl+","+times+","+contentslikecount);
+			
+			contents.setContentId(contentsId);
+			contents.setContents(text);
+			contents.setImgURL(imgurl);
+			contents.setWriteDate(times);
+			contents.setContentsLikeCount(contentslikecount);
+			System.out.println(contents.toString());
+			
+			rs_product = stmt2.executeQuery(sql_product);
+			if(rs_product.next()){
+				String productionName = rs_product.getString(1);
+				String productionprice = rs_product.getString(2);
+				String sellername = rs_product.getString(3);
+				String selleraddress = rs_product.getString(4);
+				int evaluation = rs_product.getInt(5);
+				ProductInfo productInfo = new ProductInfo();
+				productInfo.setProductName(productionName);
+				productInfo.setProductPrice(productionprice);
+				productInfo.setProductStore(sellername);
+				productInfo.setProductStoreAddr(selleraddress);
+				productInfo.setEvaluation(evaluation);
+				System.out.println(productInfo.toString());
+				contents.setProductInfo(productInfo);
+			}
+			
+		}
+		return contents;
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	return null;
+}
+
 }

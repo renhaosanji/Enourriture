@@ -15,6 +15,7 @@ import ent.model.dto.User;
 import ent.model.service.FollowService;
 import ent.model.service.UserService;
 import ent.model.dto.Communication;
+import ent.model.dto.Contents;
 /**
  * Servlet implementation class Controller
  */
@@ -73,6 +74,11 @@ public class userController extends HttpServlet {
 			case "follow":
 				followController(request, response);
 				break;
+				
+			case "pageView":
+				pageView(request, response);
+				break;
+				
 			
 			default:
 				System.out.println("해당 요청이 없습니다.");
@@ -500,6 +506,24 @@ public class userController extends HttpServlet {
 		
 		System.out.println(str);
 		
+		
+	}
+	
+	public void pageView(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	
+		String contentsId=(String)request.getParameter("contentsid");
+		
+		System.out.println(contentsId);
+		UserService us = new UserService();
+		
+		Contents contents = us.pageView(contentsId);
+		
+		System.out.println(contents.toString());
+		
+		request.setAttribute("Contents", contents);
+		
+		request.getRequestDispatcher("ContentView.jsp").forward(request, response);
 		
 	}
 	

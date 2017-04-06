@@ -83,6 +83,6 @@
 
 		</div>
 	</div>
-	<jsp:include page="gridView.jsp"/>
+	<jsp:include page="gridViewMyPage.jsp"/>
 </body>
 </html>

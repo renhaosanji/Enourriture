@@ -196,6 +196,17 @@ public class managerController extends HttpServlet{
 			
 	}
 	
+	public ArrayList<Contents> getMyList(HttpServletRequest request) throws ServletException, IOException {
+		
+		ManagerService ms = new ManagerService();
+		HttpSession session = request.getSession();
+		String userid = (String)session.getAttribute("ID");
+		
+		
+		return ms.myContents(userid);
+			
+	}
+	
 	protected void updateContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
 				String contentsid = (String)request.getAttribute("contentsid");
