@@ -3,6 +3,7 @@ package ent.model.service;
 import java.util.ArrayList;
 
 import ent.model.dao.ContentsDAO;
+import ent.model.dao.FollowDAO;
 import ent.model.dao.ProductInfoDAO;
 import ent.model.dto.Contents;
 import ent.model.dto.ProductInfo;
@@ -11,6 +12,7 @@ public class ManagerService {
 	
 	private ContentsDAO content;
 	private ProductInfoDAO product;
+	private FollowDAO follow;
 	
 	public ManagerService(){
 		content = new ContentsDAO();

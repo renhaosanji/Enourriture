@@ -63,10 +63,11 @@
 					<!-- Nav Starts -->
 					<div class="navbar-collapse  collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="#works">Time Line</a></li>
+							<li class="active"><a href="timeline.jsp">Time Line</a></li>
+							<li><a href="#about">My Page</a></li>
 							<li><a href="inputContentView.jsp">Write</a></li>
-							<li><a href="userInfoTest.jsp">My Page</a></li>
-				
+							<li><a href="userInfoTest.jsp">My info</a></li>
+							<li><form method="post" action="ucontroller?action=logout">
 							<li><a href="ucontroller?action=logout">logout</a></li>
 <!-- 									<input type="submit" value="logout"
 										onclick="location.href='logoutTest.jsp'"> -->
