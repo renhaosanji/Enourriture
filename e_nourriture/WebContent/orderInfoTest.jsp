@@ -265,7 +265,12 @@
                   <input type="submit" value="林巩 秒家">
                   <button type="submit" class="button">林巩 秒家</button>
 				</form>
-				
+				 <form method="post" action="ucontroller?action=orderCancel">
+                  <input type="hidden" name="userId" value='<%=list2.get(i).getUserId() %>' >
+                  <input type="hidden" name="orderNumber" value='<%=list2.get(i).getOrderNumber() %>' >
+                  <input type="submit" value="林巩 秒家">
+                  <button type="submit" class="button">林巩 秒家</button>
+				</form>
 				<br>
 			</fieldset>
 		</form>
