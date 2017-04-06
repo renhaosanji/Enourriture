@@ -199,10 +199,9 @@
 					<div class="navbar-collapse  collapse">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="#works">Time Line</a></li>
-							<li><a href="#about">My Page</a></li>
 							<li><a href="inputContentView.jsp">Write</a></li>
-							<li><a href="userInfoTest.jsp">정보조회</a></li>
-							<li><a href="userInfoTest.jsp">예약확인/취소</a></li>
+							<li><a href="searchInfoTest.jsp">My Information</a></li>
+							<li><a href="orderInfoTest.jsp">Reservation Confirm/Cancell</a></li>
 							
 							<li><a href="ucontroller?action=logout">logout</a></li>
 <!-- 									<input type="submit" value="logout"
@@ -263,7 +262,7 @@
 					type="checkbox" name="checkbox"><i></i>I agree to leave this Service</label> <label class="checkbox">
 			</fieldset>
 			<footer>
-			<button type="submit" class="button" onclick="location.href='loginView.jsp'">회원탈퇴</button>
+			<button type="submit" class="button" onclick="location.href='loginView.jsp'">Withdraw</button>
 			</footer>
 		</form>
 

@@ -73,13 +73,6 @@ public class userController extends HttpServlet {
 			case "following":
 				following(request, response);
 				break;
-			case "follow":
-				followController(request, response);
-				break;		
-			case "pageView":
-				pageView(request, response);
-				break;
-				
 			default:
 				System.out.println("해당 요청이 없습니다.");
 				break;
@@ -93,22 +86,6 @@ public class userController extends HttpServlet {
 
 
 	
-	private void pageView(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-	private void followController(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
 	//  1. 로그인 
 	protected void login(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -314,7 +291,7 @@ public class userController extends HttpServlet {
 		
 	}
 	public ArrayList<Order> orderInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("주문 시작");
+		System.out.println("주문조회 시작");
 		
 		HttpSession session = request.getSession(false);
 		
@@ -322,7 +299,7 @@ public class userController extends HttpServlet {
 
 			String id = (String) session.getAttribute("ID");
 			UserService us = new UserService();
-			System.out.println("주문성공");
+			System.out.println("주문조회 성공");
 			return us.purchaseInfo(id);
 		} else {
 			System.out.println("주문에 실패했습니다.");
@@ -545,4 +522,5 @@ public class userController extends HttpServlet {
 	}
 	
 	
+
 }

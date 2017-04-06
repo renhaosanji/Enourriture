@@ -199,10 +199,9 @@
 					<div class="navbar-collapse  collapse">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="#works">Time Line</a></li>
-							<li><a href="#about">My Page</a></li>
 							<li><a href="inputContentView.jsp">Write</a></li>
-							<li><a href="userInfoTest.jsp">정보조회</a></li>
-							<li><a href="userInfoTest.jsp">예약확인/취소</a></li>
+							<li><a href="searchInfoTest.jsp">My Information</a></li>
+							<li><a href="orderInfoTest.jsp">Reservation Confirm/Cancell</a></li>
 							
 							<li><a href="ucontroller?action=logout">logout</a></li>
 <!-- 									<input type="submit" value="logout"
@@ -262,8 +261,8 @@
 					class="tooltip tooltip-bottom-right"></b>
 				</label> </section>
 			
-				<button type="button" class="button" onclick="location.href='idDelete.jsp'">회원탈퇴</button>
-				<button type="button" class="button" onclick="location.href='infoChangeTest.jsp'">정보변경</button>
+				<button type="button" class="button" onclick="location.href='idDelete.jsp'">Withdraw</button>
+				<button type="button" class="button" onclick="location.href='infoChangeTest.jsp'">Change Information</button>
 				<br>
 				</fieldset>
 		</form>

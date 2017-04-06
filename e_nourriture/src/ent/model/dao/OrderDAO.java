@@ -120,7 +120,7 @@ public class OrderDAO {
 		System.out.println(order.getOrderCount());
 		System.out.println(order.getOrderTime());
 	
-		String sql = "update ORDERINFO set ProductionName = ?, orderCount = ?, orderTime=? where userId ='"+order.getUserId()+"'";
+		String sql = "update ORDERINFO set ProductionName = ?, orderCount = ?, orderTime=? where userId ='"+order.getUserId()+"' and orderNumber ='"+order.getOrderNumber();
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
