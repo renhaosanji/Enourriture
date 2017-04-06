@@ -70,7 +70,7 @@ public class FollowDAO {
 		ArrayList<Contents> followingUserContentList = new ArrayList<>();
 		String sqlcon1 = "select * from USERCONTENTS where userid=\'";
 		String sqlcon2 = "or userid=\'";
-		String sqlcon3 = "order by times";
+		String sqlcon3 = "order by times DESC";
 
 		StringBuilder sb = new StringBuilder("");
 		if (followingUserIds != null) {

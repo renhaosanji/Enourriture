@@ -145,7 +145,7 @@ public class CommunicationDAO {
 			stmt = getStatement(conn);
 			String sql = "select COMMENTS, SENDERID, RECIVERID , "
 					+ "COMMENTTIME, CONTENTSID from "
-					+ "usercommunication where= \'"+contentsId+"'";
+					+ "usercommunication where= \'"+contentsId+"\' order by COMMENTTIME DESC ";
 			rs = stmt.executeQuery(sql);
 			
 			while (rs.next()) {
