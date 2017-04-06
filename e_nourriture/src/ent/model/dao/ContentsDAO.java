@@ -140,7 +140,7 @@ public class ContentsDAO {
 			stmt = getStatement(conn);
 			stmt2 = getStatement(conn);
 			rs = stmt.executeQuery(sql);
-			System.out.println(rs.next());
+			
 			while(rs.next()){
 				contentsid = rs.getInt(1);
 				text=rs.getString(2);
