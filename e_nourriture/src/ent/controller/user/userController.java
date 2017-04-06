@@ -62,6 +62,9 @@ public class userController extends HttpServlet {
 			case "orderCancel":
 				orderCancel(request, response);
 				break;
+			case "orderChange":
+				orderChange(request, response);
+				break;
 			case "writeSendComment":
 				writeSendCom(request, response);
 				break;
@@ -298,7 +301,7 @@ public class userController extends HttpServlet {
 		
 	}
 	public ArrayList<Order> orderInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("주문 시작");
+		System.out.println("주문조회 시작");
 		
 		HttpSession session = request.getSession(false);
 		
@@ -306,7 +309,7 @@ public class userController extends HttpServlet {
 
 			String id = (String) session.getAttribute("ID");
 			UserService us = new UserService();
-			System.out.println("주문성공");
+			System.out.println("주문조회 성공");
 			return us.purchaseInfo(id);
 		} else {
 			System.out.println("주문에 실패했습니다.");
@@ -347,34 +350,25 @@ public class userController extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		String orderNumber = request.getParameter("orderNumber"); // 주문 번호
 		String userId= request.getParameter("userId"); // ID
-		Order order=new Order(orderNumber,userId);
-		UserService or = new UserService();
-		int result = or.cancellation(order.getOrderNumber(), order.getUserId());
-		System.out.println(result);
-		if (result == 0) {
-			System.out.println("주문취소에 실패했습니다.");
-		} else {
-			System.out.println("주문취소에 성공했습니다.");
+		System.out.println(orderNumber + " " + userId);
+		System.out.println("1");
+		if (session != null && session.getAttribute("ID") != null) {
+			System.out.println("2");
+			Order order=new Order(orderNumber,userId);
+			UserService or = new UserService();
+			int result = or.cancellation(order.getOrderNumber(), order.getUserId());
+			if (result == 0) {
+				System.out.println("주문취소에 실패했습니다.");
+			} else {
+				System.out.println("주문취소에 성공했습니다.");
+				request.getRequestDispatcher("oderInfoTest.jsp").forward(request, response);
+			}
+		}else {
+			System.out.println("3");
+			System.out.println("session오류로 인하여 주문 취소에 실패하였습니다.");
+			request.setAttribute("message", "정보 조회에 실패하였습니다.");
+			request.getRequestDispatcher("error/error.jsp").forward(request, response);
 		}
-
-//		System.out.println("1");
-//		if (session != null && session.getAttribute("ID") != null) {
-//			System.out.println("2");
-//			UserService or = new UserService();
-//			int result = or.cancellation(order.getOrderNumber(), order.getUserId());
-//			if (result == 0) {
-//				System.out.println("주문취소에 실패했습니다.");
-//			} else {
-//				System.out.println("주문취소에 성공했습니다.");
-//			}
-//
-//			request.getRequestDispatcher("loginView.jsp").forward(request, response);
-//		}else {
-//			System.out.println("3");
-//			System.out.println("session오류로 인하여 주문 취소에 실패하였습니다.");
-//			request.setAttribute("message", "정보 조회에 실패하였습니다.");
-//			request.getRequestDispatcher("error/error.jsp").forward(request, response);
-//		}
 	}
 	//8. 댓글등록
 	private void writeSendCom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -466,6 +460,50 @@ public class userController extends HttpServlet {
 //		}
 		
 	}
+	private void orderChange(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("euc-kr");
+		System.out.println("주문 변경시작");
+		HttpSession session = request.getSession(false);
+		String orderNumber = request.getParameter("orderNumber"); // 주문 번호
+		String userId=(String) session.getAttribute("ID");
+		String orderCount = request.getParameter("orderCount"); // 주문 번호
+		String orderTime= request.getParameter("orderTime"); // ID
+		String productName= request.getParameter("productName"); // ID
+		if (session != null && session.getAttribute("ID") != null) {
+			System.out.println("1 "+userId+" "+orderNumber+" "+orderCount+" "+orderTime+" "+productName);
+			
+			if (userId == null || orderNumber == null) {
+				// 요청 결과 받아서 응답 위한 설정
+				request.setAttribute("message", "userId 와 orderNumber null");
+				request.getRequestDispatcher("error/error.jsp").forward(request, response);
+			} else if (userId.trim().length() == 0 || orderNumber.trim().length() == 0) {
+				System.out.println("다시 입력");
+				// response.sendRedirect("login.jsp");
+			} else {
+				
+				Order newMember = new Order(userId,orderNumber, productName, orderCount,orderTime);
+				UserService us = new UserService();
+				
+				int update=us.orderChange(newMember) ;
+				System.out.println(update);
+
+				if (us.orderChange(newMember) != 0) {
+					System.out.println("변경 성공");
+					request.setAttribute("message", "변경 성공");
+					request.getRequestDispatcher("searchInfoTest.jsp").forward(request, response);
+				} else {
+					System.out.println("없음");
+					request.setAttribute("message", "없음");
+					request.getRequestDispatcher("error/error.jsp").forward(request, response);
+				}
+			}
+
+		} else {
+			System.out.println("session error 정보변경실패");
+			request.getRequestDispatcher("error/error.jsp").forward(request, response);
+		}
+		
+	}
 	protected void following(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		FollowService fs = new FollowService();
 		
@@ -529,5 +567,4 @@ public class userController extends HttpServlet {
 	
 	
 	
-
 }

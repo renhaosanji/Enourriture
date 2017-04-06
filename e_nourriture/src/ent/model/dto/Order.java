@@ -10,6 +10,14 @@ public class Order {
 	
 	public Order() {
 		
+
+	}
+	public Order(String orderNumber, String productName, String orderCount, String orderTime) {
+		super();
+		this.orderNumber = orderNumber;
+		this.productName = productName;
+		this.orderCount = orderCount;
+		this.orderTime = orderTime;
 	}
 
 	public Order(String orderNumber, String userId) {
@@ -17,17 +25,16 @@ public class Order {
 		this.orderNumber = orderNumber;
 		this.userId = userId;
 	}
-
-	public Order( String userId, String productName, String orderCount, String orderTime,
+	public Order(  String userId, String productName, String orderCount, String orderTime,
 			String address) {
 		super();
-		
 		this.userId = userId;
 		this.productName = productName;
 		this.orderCount = orderCount;
 		this.orderTime = orderTime;
 		this.address = address;
 	}
+
 
 	public String getOrderNumber() {
 		return orderNumber;
