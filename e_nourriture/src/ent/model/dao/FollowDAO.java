@@ -64,11 +64,12 @@ public class FollowDAO {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
+		ResultSet rs1 = null;
 
 		ArrayList<Contents> followingUserContentList = new ArrayList<>();
 		String sqlcon1 = "select * from USERCONTENTS left outer join CONTENTSINFODB on USERCONTENTS.contentsid = CONTENTSINFODB.contentsid where USERCONTENTS.userid=\'";
 		String sqlcon2 = "or USERCONTENTS.userid=\'";
-		String sqlcon3 = "order by times";
+		String sqlcon3 = "order by times desc";
 
 		StringBuilder sb = new StringBuilder("");
 		System.out.println("########################" + followingUserIds.toString());
@@ -106,7 +107,12 @@ public class FollowDAO {
 					followingUserContent.setProductInfo(pi);
 					pi.setEvaluation(rs.getInt(12));
 					followingUserContent.setProductInfo(pi);
-
+                    String sql2= "select * from USERCOMMUNICATION where CONTENTSID =\'"+rs.getString(2);
+					rs1 = stmt.executeQuery(sql2);
+					while (rs1.next()) {
+						type type = (type) it.next();
+						
+					}
 					followingUserContentList.add(followingUserContent);
 				}
 
