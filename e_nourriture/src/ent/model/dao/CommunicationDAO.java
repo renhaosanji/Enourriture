@@ -133,7 +133,7 @@ public class CommunicationDAO {
 	}
 	
 	// 해당 게시물의 전체 댓글을 list로
-	public ArrayList<Communication> CommunicationList(String contentsId) {
+	public ArrayList<Communication> communicationList(String contentsId) {
 		
 		Connection conn = null;
 		Statement stmt = null;
