@@ -112,16 +112,8 @@ label.star:before {
 
 			<fieldset>
 				<section>
-					<label class="input"> <img src="images/no_image.PNG"
-						align="middle" alt="Smiley face">
-					</label>
-				</section>
-
-				<section>
-					<div class="filebox bs3-primary preview-image" align="right">
-						<input class="upload-name" value="파일선택" disabled="disabled"
-							style="width: 200px;"> <label for="input_file">업로드</label>
-						<input type="file" name="imgfile" id="input_file" class="upload-hidden">
+					<div>
+						<input type="file" name="imgfile" id="input_file">
 					</div>
 				</section>
 			</fieldset>
