@@ -183,7 +183,7 @@ public class ContentsDAO {
 		
 	}
 	
-	public ArrayList<Contents> getList(){
+public ArrayList<Contents> getList(String userid){
 		
 		ArrayList<Contents> list = new ArrayList<Contents>();
 		
@@ -191,9 +191,10 @@ public class ContentsDAO {
 		Statement stmt=null;
 		Statement stmt2=null;
 		
-		String sql = "select contentsid,text, imgurl from usercontents order by times desc, contentslikecount desc";
+		String sql = "select userid,contentsid,text,imgurl from usercontents where userid!='"+userid+"' order by times desc, contentslikecount desc";
 		ResultSet rs =null;
 		ResultSet rs_product=null;
+		String usersid=null;
 		String text=null;
 		String imgurl=null;
 		String times=null;
@@ -203,12 +204,14 @@ public class ContentsDAO {
 			stmt = getStatement(conn);
 			stmt2 = getStatement(conn);
 			rs = stmt.executeQuery(sql);
-			System.out.println(rs.next());
+			
 			while(rs.next()){
-				contentsid=rs.getInt(1);
-				text=rs.getString(2);
-				imgurl=rs.getString(3);
+				usersid=rs.getString(1);
+				contentsid=rs.getInt(2);
+				text=rs.getString(3);
+				imgurl=rs.getString(4);
 				Contents contents = new Contents();
+				contents.setUserId(usersid);
 				contents.setContentId(contentsid+"");
 				contents.setContents(text);
 				contents.setImgURL(imgurl);

@@ -185,11 +185,14 @@ public class managerController extends HttpServlet{
 			request.getRequestDispatcher("myContents.jsp").forward(request, response);
 	}
 	
-	public ArrayList<Contents> getList() throws ServletException, IOException {
-			
-		ManagerService ms = new ManagerService();
+	public ArrayList<Contents> getList(HttpServletRequest request) throws ServletException, IOException {
 		
-		return ms.getList();
+		ManagerService ms = new ManagerService();
+		HttpSession session = request.getSession();
+		String userid = (String)session.getAttribute("ID");
+		
+		
+		return ms.getList(userid);
 			
 	}
 	
@@ -260,6 +263,8 @@ public class managerController extends HttpServlet{
 				} else { 
 					System.out.println("½ÇÆÐ");
 				}
-		
 	}
+	
+	
+	
 }

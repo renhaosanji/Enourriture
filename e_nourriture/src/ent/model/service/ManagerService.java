@@ -48,8 +48,8 @@ public class ManagerService {
 	}
 	
 	//3. 전체 글 조회
-	public ArrayList<Contents> getList(){
-		return content.getList();
+	public ArrayList<Contents> getList(String userid){
+		return content.getList(userid);
 	}
 	
 	

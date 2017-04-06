@@ -70,6 +70,10 @@ public class userController extends HttpServlet {
 			case "following":
 				following(request, response);
 				break;
+			case "follow":
+				followController(request, response);
+				break;
+			
 			default:
 				System.out.println("해당 요청이 없습니다.");
 				break;
@@ -482,6 +486,23 @@ public class userController extends HttpServlet {
 		request.setCharacterEncoding("EUC-KR");
 		process(request, response);
 	}
+	
+	public void followController(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		String myid = (String)session.getAttribute("ID");
+		String userId=(String)request.getParameter("UserId");
+		System.out.println(userId+","+myid);
+		
+		FollowService fs = new FollowService();
+		String str = fs.followingUser(myid, userId);
+		
+		System.out.println(str);
+		
+		
+	}
+	
 	
 	
 
