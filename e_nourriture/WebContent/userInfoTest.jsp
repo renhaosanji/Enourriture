@@ -63,7 +63,7 @@
 							<li><a href="#about">My Page</a></li>
 							<li><a href="inputContentView.jsp">Write</a></li>
 							<li><a href="searchInfoTest.jsp">내정보확인</a></li>
-							<li><a href="userInfoTest.jsp">예약확인/취소</a></li>
+							<li><a href="orderInfoTest.jsp">예약확인/취소</a></li>
 							
 							<li><a href="ucontroller?action=logout">logout</a></li>
 <!-- 									<input type="submit" value="logout"

@@ -288,7 +288,7 @@ public class userController extends HttpServlet {
 		
 	}
 	public ArrayList<Order> orderInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("주문 시작");
+		System.out.println("주문조회 시작");
 		
 		HttpSession session = request.getSession(false);
 		
@@ -296,7 +296,7 @@ public class userController extends HttpServlet {
 
 			String id = (String) session.getAttribute("ID");
 			UserService us = new UserService();
-			System.out.println("주문성공");
+			System.out.println("주문조회 성공");
 			return us.purchaseInfo(id);
 		} else {
 			System.out.println("주문에 실패했습니다.");
@@ -337,34 +337,27 @@ public class userController extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		String orderNumber = request.getParameter("orderNumber"); // 주문 번호
 		String userId= request.getParameter("userId"); // ID
-		Order order=new Order(orderNumber,userId);
-		UserService or = new UserService();
-		int result = or.cancellation(order.getOrderNumber(), order.getUserId());
-		System.out.println(result);
-		if (result == 0) {
-			System.out.println("주문취소에 실패했습니다.");
-		} else {
-			System.out.println("주문취소에 성공했습니다.");
-		}
+		System.out.println(orderNumber + " " + userId);
+		System.out.println("1");
+		if (session != null && session.getAttribute("ID") != null) {
+			System.out.println("2");
+			Order order=new Order(orderNumber,userId);
+			UserService or = new UserService();
+			int result = or.cancellation(order.getOrderNumber(), order.getUserId());
+			if (result == 0) {
+				System.out.println("주문취소에 실패했습니다.");
+			} else {
+				System.out.println("주문취소에 성공했습니다.");
+				request.getRequestDispatcher("oderInfoTest.jsp").forward(request, response);
+			}
 
-//		System.out.println("1");
-//		if (session != null && session.getAttribute("ID") != null) {
-//			System.out.println("2");
-//			UserService or = new UserService();
-//			int result = or.cancellation(order.getOrderNumber(), order.getUserId());
-//			if (result == 0) {
-//				System.out.println("주문취소에 실패했습니다.");
-//			} else {
-//				System.out.println("주문취소에 성공했습니다.");
-//			}
-//
-//			request.getRequestDispatcher("loginView.jsp").forward(request, response);
-//		}else {
-//			System.out.println("3");
-//			System.out.println("session오류로 인하여 주문 취소에 실패하였습니다.");
-//			request.setAttribute("message", "정보 조회에 실패하였습니다.");
-//			request.getRequestDispatcher("error/error.jsp").forward(request, response);
-//		}
+			request.getRequestDispatcher("loginView.jsp").forward(request, response);
+		}else {
+			System.out.println("3");
+			System.out.println("session오류로 인하여 주문 취소에 실패하였습니다.");
+			request.setAttribute("message", "정보 조회에 실패하였습니다.");
+			request.getRequestDispatcher("error/error.jsp").forward(request, response);
+		}
 	}
 	//8. 댓글등록
 	private void writeSendCom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

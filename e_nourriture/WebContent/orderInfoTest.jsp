@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ page import="ent.controller.user.userController" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="ent.model.dto.User" %>
-<%@ page import="ent.model.dto.Order" %>
+	pageEncoding="EUC-KR"%>
+<%@ page import="ent.controller.user.userController"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="ent.model.dto.User"%>
+<%@ page import="ent.model.dto.Order"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -179,7 +179,7 @@
 	<!-- Header Starts -->
 	<div class="navbar-wrapper">
 		<div class="container">
-	
+
 			<div class="navbar navbar-default navbar-fixed-top" role="navigation"
 				id="top-nav">
 				<div class="container">
@@ -203,11 +203,11 @@
 							<li><a href="inputContentView.jsp">Write</a></li>
 							<li><a href="userInfoTest.jsp">정보조회</a></li>
 							<li><a href="userInfoTest.jsp">예약확인/취소</a></li>
-							
+
 							<li><a href="ucontroller?action=logout">logout</a></li>
-<!-- 									<input type="submit" value="logout"
+							<!-- 									<input type="submit" value="logout"
 										onclick="location.href='logoutTest.jsp'"> -->
-						
+
 							<!-- <li><form action="post"
 									action="ucontroller?action=following">
 									<input type="text" name="followingUserId"> <input
@@ -228,52 +228,51 @@
 	<br>
 	<br>
 	<br>
+	<br>
+	<br>
+	<br>
+
 	<%
-	userController us = new userController();
-	ArrayList<Order> list2=us.orderInfo(request, response);
-	
+		userController us = new userController();
+		ArrayList<Order> list2 = us.orderInfo(request, response);
 
-	for(int i=0;i<list2.size();i++){
-%>
-<!-- 				<body class="bg-cyan"> -->
-<!-- 	<div class="body body-s"> -->
-<!-- 		<form method="post" class="sky-form" action="" > -->
+		for (int i = 0; i < list2.size(); i++) {
+	%>
 
-<!-- 			<header>User Information</header> -->
+<body class="bg-cyan">
+	<div class="body body-s">
+		<form method="post" class="sky-form" action="">
 
-<!-- 			<fieldset> -->
-<%-- 				<section> <label class="input">  userId :<%=list2.get(i).getUserId() %> --%>
-<!-- 					<b class="tooltip tooltip-bottom-right"></b>  -->
-<!-- 				</label> -->
-<!-- 				</section> -->
+			<header>User Information</header>
 
-<%-- 				<section> <label class="input"> orderNumber :<%=list2.get(i).getUserId() %> --%>
-<!-- 					<b class="tooltip tooltip-bottom-right"></b> -->
-<!-- 				</label> </section> -->
+			<fieldset>
+				<section> <label class="input"> userId :<%=list2.get(i).getUserId()%>
+					<b class="tooltip tooltip-bottom-right"></b>
+				</label> </section>
 
-
-<%-- 				<section> <label class="input"> orderNumber :<%=list2.get(i).getUserPw() %> --%>
-<!-- 					<b class="tooltip tooltip-bottom-right"></b> -->
-<!-- 				</label> </section> -->
-
-<%-- 				<section> <label class="input"> orderCount :<%=list2.get(i).getEmail() %><b --%>
-<!-- 					class="tooltip tooltip-bottom-right"></b> -->
-<!-- 				</label> </section> -->
-<%-- 				<section> <label class="input"> orderTime : <%=list2.get(i).getPhoneNumber() %><b --%>
-<!-- 					class="tooltip tooltip-bottom-right"></b> -->
-<!-- 				</label> </section> -->
-<%-- 				<section> <label class="input"> address : <%=list2.get(i).getPhoneNumber() %><b --%>
-<!-- 					class="tooltip tooltip-bottom-right"></b> -->
-<!-- 				</label> </section> -->
-<!-- 				<button type="button" class="button" onclick="location.href='idDelete.jsp'">회원탈퇴</button> -->
-<!-- 				<button type="button" class="button" onclick="location.href='infoChangeTest.jsp'">정보변경</button> -->
-<!-- 				<br> -->
-<!-- 				</fieldset> -->
-<!-- 		</form> -->
-<!-- 	</div> -->
-<!-- </body> -->
+				<section> <label class="input"> orderNumber :<%=list2.get(i).getOrderNumber()%>
+					<b class="tooltip tooltip-bottom-right"></b>
+				</label> </section>
+				<section> <label class="input"> orderCount :<%=list2.get(i).getOrderCount()%><b
+					class="tooltip tooltip-bottom-right"></b>
+				</label> </section>
+				<section> <label class="input"> orderTime : <%=list2.get(i).getOrderTime()%><b
+					class="tooltip tooltip-bottom-right"></b>
+				</label> </section>
+				 <form method="post" action="ucontroller?action=orderCancel">
+                  <input type="hidden" name="userId" value='<%=list2.get(i).getUserId() %>' >
+                  <input type="hidden" name="orderNumber" value='<%=list2.get(i).getOrderNumber() %>' >
+                  <input type="submit" value="주문 취소">
+                  <button type="submit" class="button">주문 취소</button>
+				</form>
+				
+				<br>
+			</fieldset>
+		</form>
+	</div>
+</body>
 <%
-		}
+	}
 %>
 
 </body>

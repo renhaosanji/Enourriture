@@ -233,7 +233,7 @@
 	ArrayList<User> list2=us.userContents(request, response);
 	ArrayList<User> list = us.getList();
 	for(int i=0;i<list2.size();i++){
-%>
+	%>
 				<body class="bg-cyan">
 	<div class="body body-s">
 		<form method="post" class="sky-form" action="" >

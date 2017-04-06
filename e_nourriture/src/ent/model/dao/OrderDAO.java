@@ -57,7 +57,7 @@ public class OrderDAO {
 		return 0;
 	}
 	public ArrayList<Order> purchaseInfo(String userId){
-		System.out.println("OrderDAO 까지 잘 들어왔어");
+		System.out.println("purchaseInfo 까지 잘 들어왔어 ");
 		ArrayList<Order> list = new ArrayList<Order>();
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -93,6 +93,7 @@ public class OrderDAO {
 	}
 	
 	public int cancellation(String orderNumber, String userId){
+		System.out.println("cancellation 까지 잘 들어왔어 ");
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		try {
