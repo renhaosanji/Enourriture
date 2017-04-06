@@ -12,13 +12,6 @@ public class Order {
 		
 
 	}
-	public Order(String orderNumber, String productName, String orderCount, String orderTime) {
-		super();
-		this.orderNumber = orderNumber;
-		this.productName = productName;
-		this.orderCount = orderCount;
-		this.orderTime = orderTime;
-	}
 
 	public Order(String orderNumber, String userId) {
 		super();
@@ -26,13 +19,13 @@ public class Order {
 		this.userId = userId;
 	}
 	public Order(  String userId, String productName, String orderCount, String orderTime,
-			String address) {
+			String orderNumber) {
 		super();
 		this.userId = userId;
 		this.productName = productName;
 		this.orderCount = orderCount;
 		this.orderTime = orderTime;
-		this.address = address;
+		this.orderNumber = orderNumber;
 	}
 
 

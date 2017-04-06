@@ -361,7 +361,7 @@ public class userController extends HttpServlet {
 				System.out.println("주문취소에 실패했습니다.");
 			} else {
 				System.out.println("주문취소에 성공했습니다.");
-				request.getRequestDispatcher("oderInfoTest.jsp").forward(request, response);
+				request.getRequestDispatcher("orderInfoTest.jsp").forward(request, response);
 			}
 		}else {
 			System.out.println("3");
@@ -567,4 +567,5 @@ public class userController extends HttpServlet {
 	
 	
 	
+
 }
