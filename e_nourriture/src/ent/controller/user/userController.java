@@ -55,6 +55,9 @@ public class userController extends HttpServlet {
 			case "order":
 				order(request, response);
 				break;
+			case "orderInfo":
+				orderInfo(request, response);
+				break;
 			case "orderCancel":
 				orderCancel(request, response);
 				break;
@@ -71,6 +74,7 @@ public class userController extends HttpServlet {
 				System.out.println("해당 요청이 없습니다.");
 				break;
 			}
+			
 		} else {
 			System.out.println("해당 요청이 없습니다.");
 		}
@@ -282,6 +286,24 @@ public class userController extends HttpServlet {
 			request.getRequestDispatcher("error/error.jsp").forward(request, response);
 		}
 		
+	}
+	public ArrayList<Order> orderInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("주문 시작");
+		
+		HttpSession session = request.getSession(false);
+		
+		if (session != null && session.getAttribute("ID") != null) {
+
+			String id = (String) session.getAttribute("ID");
+			UserService us = new UserService();
+			System.out.println("주문성공");
+			return us.purchaseInfo(id);
+		} else {
+			System.out.println("주문에 실패했습니다.");
+			request.setAttribute("message", "정보 조회에 실패하였습니다.");
+			request.getRequestDispatcher("error/error.jsp").forward(request, response);
+		}
+		return null;
 	}
 	//7. 주문
 	protected void order(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

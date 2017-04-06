@@ -47,6 +47,10 @@ public class UserService {
 		System.out.println("4");
 		return odao.purchase(dto);
 	}
+	public ArrayList<Order> purchaseInfo(String userid){
+		System.out.println("4");
+		return odao.purchaseInfo(userid);
+	}
 	public int cancellation(String orderNumber, String userId){
 
 		return odao.cancellation(orderNumber,userId );

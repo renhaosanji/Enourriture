@@ -56,6 +56,42 @@ public class OrderDAO {
 		}	
 		return 0;
 	}
+	public ArrayList<Order> purchaseInfo(String userId){
+		System.out.println("OrderDAO 까지 잘 들어왔어");
+		ArrayList<Order> list = new ArrayList<Order>();
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		Order order=null;
+		String sql = "select * from  ORDERINFO where userId=?";
+		try {
+			
+			
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				order = new Order();
+				order.setUserId(rs.getString(1));
+				order.setOrderNumber(rs.getString(2));
+				order.setProductName(rs.getString(3));
+				order.setOrderCount(rs.getString(4));
+				order.setAddress(rs.getString(5));
+				order.setOrderTime(rs.getString(6));
+				list.add(order);
+			}
+
+		} catch (Exception ex) {
+			System.out.println("오류 발생 : " + ex);
+		} finally {
+			fd.close(rs, pstmt, conn);
+		}
+
+		return list;
+	}
+	
 	public int cancellation(String orderNumber, String userId){
 		Connection conn=null;
 		PreparedStatement pstmt=null;

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page import="ent.controller.manager.managerController" %>
 <%@ page import="ent.controller.user.userController" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="ent.model.dto.User" %>
+<%@ page import="ent.model.dto.Order" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -230,45 +230,48 @@
 	<br>
 	<%
 	userController us = new userController();
-	ArrayList<User> list2=us.userContents(request, response);
-	ArrayList<User> list = us.getList();
+	ArrayList<Order> list2=us.orderInfo(request, response);
+	
+
 	for(int i=0;i<list2.size();i++){
 %>
-				<body class="bg-cyan">
-	<div class="body body-s">
-		<form method="post" class="sky-form" action="" >
+<!-- 				<body class="bg-cyan"> -->
+<!-- 	<div class="body body-s"> -->
+<!-- 		<form method="post" class="sky-form" action="" > -->
 
-			<header>User Information</header>
+<!-- 			<header>User Information</header> -->
 
-			<fieldset>
-				<section> <label class="input">  UserName :<%=list2.get(i).getNickname() %>
-					<b class="tooltip tooltip-bottom-right"></b> 
-				</label>
-				</section>
+<!-- 			<fieldset> -->
+<%-- 				<section> <label class="input">  userId :<%=list2.get(i).getUserId() %> --%>
+<!-- 					<b class="tooltip tooltip-bottom-right"></b>  -->
+<!-- 				</label> -->
+<!-- 				</section> -->
 
-				<section> <label class="input"> ID :<%=list2.get(i).getUserId() %>
-					<b class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
+<%-- 				<section> <label class="input"> orderNumber :<%=list2.get(i).getUserId() %> --%>
+<!-- 					<b class="tooltip tooltip-bottom-right"></b> -->
+<!-- 				</label> </section> -->
 
 
-				<section> <label class="input"> PassWord :<%=list2.get(i).getUserPw() %>
-					<b class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
+<%-- 				<section> <label class="input"> orderNumber :<%=list2.get(i).getUserPw() %> --%>
+<!-- 					<b class="tooltip tooltip-bottom-right"></b> -->
+<!-- 				</label> </section> -->
 
-				<section> <label class="input"> Email Address :<%=list2.get(i).getEmail() %><b
-					class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
-				<section> <label class="input"> PhoneNumber : <%=list2.get(i).getPhoneNumber() %><b
-					class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
-			
-				<button type="button" class="button" onclick="location.href='idDelete.jsp'">È¸¿øÅ»Åð</button>
-				<button type="button" class="button" onclick="location.href='infoChangeTest.jsp'">Á¤º¸º¯°æ</button>
-				<br>
-				</fieldset>
-		</form>
-	</div>
-</body>
+<%-- 				<section> <label class="input"> orderCount :<%=list2.get(i).getEmail() %><b --%>
+<!-- 					class="tooltip tooltip-bottom-right"></b> -->
+<!-- 				</label> </section> -->
+<%-- 				<section> <label class="input"> orderTime : <%=list2.get(i).getPhoneNumber() %><b --%>
+<!-- 					class="tooltip tooltip-bottom-right"></b> -->
+<!-- 				</label> </section> -->
+<%-- 				<section> <label class="input"> address : <%=list2.get(i).getPhoneNumber() %><b --%>
+<!-- 					class="tooltip tooltip-bottom-right"></b> -->
+<!-- 				</label> </section> -->
+<!-- 				<button type="button" class="button" onclick="location.href='idDelete.jsp'">È¸¿øÅ»Åð</button> -->
+<!-- 				<button type="button" class="button" onclick="location.href='infoChangeTest.jsp'">Á¤º¸º¯°æ</button> -->
+<!-- 				<br> -->
+<!-- 				</fieldset> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
+<!-- </body> -->
 <%
 		}
 %>
