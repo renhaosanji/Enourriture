@@ -117,7 +117,7 @@ public class FollowDAO {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql1 = "select FOLLOWINGUSERID from USERNETWORK where userid = \'" + userId;
+		String sql1 = "select FOLLOWINGUSERID from USERNETWORK where userid = \'" + userId +"'";
 		try {
 
 			conn = getConnection();
@@ -125,8 +125,10 @@ public class FollowDAO {
 			rs = stmt.executeQuery(sql1);
 			while (rs.next()) {
 
-				if (followingId == rs.getString(1)) {
+				if (followingId.equals(rs.getString(1))) {
+					
 					return true;
+					
 				}
 
 			}
@@ -145,20 +147,22 @@ public class FollowDAO {
 
 	}
 	
-	public void followingUser(String userId, String followingId) {
+	public String followingUser(String userId, String followingId) {
 		
 		if (isfollowedUser(userId, followingId)==false) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			String sql1 = "insert into USERNETWORK(userid, FOLLOWINGUSERID)  valus(?,?)";
+			System.out.println(userId+"+++++++++++++++++++"+followingId);
+			String sql1 = "insert into USERNETWORK(userid, FOLLOWINGUSERID)  values(?,?)";
 			
 			try {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(sql1);
 				pstmt.setString(1, userId);
 				pstmt.setString(2, followingId);
-				
+				pstmt.executeUpdate();
+				return "¼º°øÀûÀ¸·Î "+ followingId+"user´Ô ÆÈ·Î¿ýÇß½À´Ï´Ù.";
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -167,6 +171,7 @@ public class FollowDAO {
 			}
 			
 		}
+		  return "ÀÌ¹ÌÆÈ·Î¿ý¿äÀúÀÔ´Ï´Ù";
 		
 		
 	}

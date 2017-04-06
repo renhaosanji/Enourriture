@@ -439,7 +439,7 @@ public class userController extends HttpServlet {
 	protected void following(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		FollowService fs = new FollowService();
 		
-		fs.followingUser("id02", "id04");
+		System.out.println(fs.followingUser("id02", "id04"));
 	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
