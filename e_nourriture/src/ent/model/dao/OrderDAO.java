@@ -115,7 +115,12 @@ public class OrderDAO {
 		System.out.println("OrderDAO 까지 잘 들어왔어");
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		String sql = "update ORDERINFO set ProductionName = ?, oderCount = ?, orderTime=? where userId ='"+order.getUserId()+"'";
+		System.out.println(order.getUserId());
+		System.out.println(order.getProductName());
+		System.out.println(order.getOrderCount());
+		System.out.println(order.getOrderTime());
+	
+		String sql = "update ORDERINFO set ProductionName = ?, orderCount = ?, orderTime=? where userId ='"+order.getUserId()+"'";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);

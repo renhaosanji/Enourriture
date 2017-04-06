@@ -455,12 +455,13 @@ public class userController extends HttpServlet {
 		System.out.println("주문 변경시작");
 		HttpSession session = request.getSession(false);
 		String orderNumber = request.getParameter("orderNumber"); // 주문 번호
-		String userId= (String) request.getAttribute("userId");
+		String userId=(String) session.getAttribute("ID");
 		String orderCount = request.getParameter("orderCount"); // 주문 번호
 		String orderTime= request.getParameter("orderTime"); // ID
 		String productName= request.getParameter("productName"); // ID
 		if (session != null && session.getAttribute("ID") != null) {
-			System.out.println("1 "+userId+" "+orderNumber);
+			System.out.println("1 "+userId+" "+orderNumber+" "+orderCount+" "+orderTime+" "+productName);
+			
 			if (userId == null || orderNumber == null) {
 				// 요청 결과 받아서 응답 위한 설정
 				request.setAttribute("message", "userId 와 orderNumber null");
@@ -469,6 +470,7 @@ public class userController extends HttpServlet {
 				System.out.println("다시 입력");
 				// response.sendRedirect("login.jsp");
 			} else {
+				
 				Order newMember = new Order(userId,orderNumber, productName, orderCount,orderTime);
 				UserService us = new UserService();
 				
