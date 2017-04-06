@@ -110,7 +110,7 @@ public class FollowDAO {
                     String sql2= "select * from USERCOMMUNICATION where CONTENTSID =\'"+rs.getString(2);
 					rs1 = stmt.executeQuery(sql2);
 					while (rs1.next()) {
-						type type = (type) it.next();
+						
 						
 					}
 					followingUserContentList.add(followingUserContent);
