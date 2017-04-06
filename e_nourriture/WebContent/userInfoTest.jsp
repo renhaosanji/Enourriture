@@ -64,11 +64,10 @@
 							<li><a href="inputContentView.jsp">Write</a></li>
 							<li><a href="searchInfoTest.jsp">내정보확인</a></li>
 							<li><a href="userInfoTest.jsp">예약확인/취소</a></li>
-							<li><form method="post" action="ucontroller?action=logout">
-							<li><a href="loginView.jsp">logout</a></li>
+							
+							<li><a href="ucontroller?action=logout">logout</a></li>
 <!-- 									<input type="submit" value="logout"
 										onclick="location.href='logoutTest.jsp'"> -->
-								</form></li>
 							<!-- <li><form action="post"
 									action="ucontroller?action=following">
 									<input type="text" name="followingUserId"> <input
@@ -84,5 +83,6 @@
 
 		</div>
 	</div>
+	<jsp:include page="gridView.jsp"/>
 </body>
 </html>

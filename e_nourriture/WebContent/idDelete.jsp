@@ -207,7 +207,7 @@
 							<li><a href="ucontroller?action=logout">logout</a></li>
 <!-- 									<input type="submit" value="logout"
 										onclick="location.href='logoutTest.jsp'"> -->
-						
+				
 							<!-- <li><form action="post"
 									action="ucontroller?action=following">
 									<input type="text" name="followingUserId"> <input
@@ -234,44 +234,43 @@
 	ArrayList<User> list = us.getList();
 	for(int i=0;i<list2.size();i++){
 %>
-				<body class="bg-cyan">
+	<body class="bg-cyan">
 	<div class="body body-s">
-		<form method="post" class="sky-form" action="" >
+		<form method="post" class="sky-form" action="ucontroller?action=userLeave">
 
-			<header>User Information</header>
+			<header>Delete ID</header>
 
 			<fieldset>
-				<section> <label class="input">  UserName :<%=list2.get(i).getNickname() %>
-					<b class="tooltip tooltip-bottom-right"></b> 
-				</label>
-				</section>
-
-				<section> <label class="input"> ID :<%=list2.get(i).getUserId() %>
-					<b class="tooltip tooltip-bottom-right"></b>
+				<section> 
+				<label class="input"><input type="text" name="ID"
+					placeholder="ID" ng-required="true" ng-model="ID">
+					<b class="tooltip tooltip-bottom-right">Only latin characters
+						and numbers</b>
+				</label> </section>
+				<section>
+				<label class="input">  <input type="password"
+					id="password1" name="password" placeholder="Password"
+					ng-model="userPassword" ng-required="true"
+					ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/"> <b
+					class="tooltip tooltip-bottom-right">Only latin characters and numbers</b>
+				</label> </section>
+				<section> <label class="input"> 탈퇴를 위해서는 ID와 비밀 번호를 한번 더 입력해 주셔야
+					합니다. <b class="tooltip tooltip-bottom-right"></b>
 				</label> </section>
 
 
-				<section> <label class="input"> PassWord :<%=list2.get(i).getUserPw() %>
-					<b class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
-
-				<section> <label class="input"> Email Address :<%=list2.get(i).getEmail() %><b
-					class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
-				<section> <label class="input"> PhoneNumber : <%=list2.get(i).getPhoneNumber() %><b
-					class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
-			
-				<button type="button" class="button" onclick="location.href='idDelete.jsp'">회원탈퇴</button>
-				<button type="button" class="button" onclick="location.href='infoChangeTest.jsp'">정보변경</button>
-				<br>
-				</fieldset>
+				 <label class="checkbox"><input
+					type="checkbox" name="checkbox"><i></i>I agree to leave this Service</label> <label class="checkbox">
+			</fieldset>
+			<footer>
+			<button type="submit" class="button" onclick="location.href='loginView.jsp'">회원탈퇴</button>
+			</footer>
 		</form>
+
 	</div>
 </body>
 <%
 		}
 %>
-
 </body>
 </html>

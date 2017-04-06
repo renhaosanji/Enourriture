@@ -239,12 +239,11 @@ public class UserDAO {
 			// 2. db 서버연결
 			conn = getConnection();
 			// 3. 특정 sql 전용 통로개설
-			String sql = "update userinfo set userPw = ?, phoneNumber = ?, email=?, nickName = ? where userId ='"+dto.getUserId()+"'";
+			String sql = "update userinfo set userPw = ?, phoneNumber = ?, email=? where userId ='"+dto.getUserId()+"'";
 			pstmt = conn.prepareStatement(sql); 
 			pstmt.setString(1, dto.getUserPw());
 		    pstmt.setString(2, dto.getPhoneNumber());
 		    pstmt.setString(3, dto.getEmail());
-		    pstmt.setString(4, dto.getNickname());
 			// 4. sql 수행요청 :
 			// 5. sql 결과처리\
 		    System.out.println("되는 거니");
