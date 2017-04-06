@@ -191,7 +191,7 @@ public class ContentsDAO {
 		Statement stmt=null;
 		Statement stmt2=null;
 		
-		String sql = "select contentsid,text, imgurl from usercontents";
+		String sql = "select contentsid,text, imgurl from usercontents order by times desc, contentslikecount desc";
 		ResultSet rs =null;
 		ResultSet rs_product=null;
 		String text=null;
