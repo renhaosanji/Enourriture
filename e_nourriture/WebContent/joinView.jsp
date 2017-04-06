@@ -219,8 +219,7 @@
 					offers</label> </section>
 			</fieldset>
 			<footer>
-			<button type="submit" class="button"
-				onclick="location.href='login.jsp'">Submit</button>
+			<button type="submit" class="button" onclick="location.href='login.jsp'">Submit</button>
 			</footer>
 		</form>
 

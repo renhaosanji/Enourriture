@@ -179,7 +179,7 @@
 	<!-- Header Starts -->
 	<div class="navbar-wrapper">
 		<div class="container">
-	
+
 			<div class="navbar navbar-default navbar-fixed-top" role="navigation"
 				id="top-nav">
 				<div class="container">
@@ -228,80 +228,52 @@
 	<br>
 	<br>
 	<br>
-	<%
-	userController us = new userController();
-	ArrayList<User> list2=us.userContents(request, response);
-	ArrayList<User> list = us.getList();
-	for(int i=0;i<list2.size();i++){
+	
+<%
+		userController us = new userController();
+		ArrayList<User> list = us.getList();
+		for(int i=0;i<list.size();i++){
 %>
-	<body class="bg-cyan">
+				<body class="bg-cyan">
 	<div class="body body-s">
-		<form method="post" class="sky-form" action="ucontroller?action=userInfoChange">
+		<form method="post" class="sky-form" action="ucontroller?action=join">
 
 			<header>Registration form</header>
 
 			<fieldset>
 				<section> <label class="input"> <i
-					class="icon-append icon-user"></i> ID :<%=list2.get(i).getUserId() %>
+					class="icon-append icon-user"></i> UserName :<%=list.get(i).getUserId() %>
 					<b class="tooltip tooltip-bottom-right"></b> 
 				</label>
 				</section>
 
 				<section> <label class="input"> <i
-					class="icon-append icon-lock"></i> <input type="password"
-					id="password1" name="password" placeholder="Password"
-					ng-model="userPassword" ng-required="true"
-					ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/"> <b
-					class="tooltip tooltip-bottom-right">Only latin characters and
-						numbers</b>
-					<div ng-show="signUpForm.password.$error.pattern"
-						class="alert alert-warning" role="alert">최소 4글자, 최대 8글자이고
-						적어도 1나의 소문자, 대문자, 숫자를 포함해야합니다.</div>
+					class="icon-append icon-envelope-alt"></i>ID :<%=list.get(i).getUserPw() %>
+					<b class="tooltip tooltip-bottom-right"></b>
 				</label> </section>
-
-				<section> <label class="input"> <i
-					class="icon-append icon-lock"></i> <input type="password"
-					ng-model="userRepassword" ng-required="true" id="password2"
-					name="password_chk" placeholder="Confirm password"> <b
-					class="tooltip tooltip-bottom-right">Only latin characters and
-						numbers</b>
-				</label> </section>
-
-				<div id="pass-info">Passwords Test</div>
-			</fieldset>
-
-			<fieldset>
 
 
 				<section> <label class="input"> <i
-					class="icon-append icon-envelope-alt"></i> <input type="text"
-					name="mail" ng-model="userEmail" ng-required="true"
-					placeholder="Email address"> <b
-					class="tooltip tooltip-bottom-right">Needed to verify your
-						account</b>
+					class="icon-append icon-lock"></i> PassWord :<%=list.get(i).getNickname() %>
+					<b class="tooltip tooltip-bottom-right"></b>
 				</label> </section>
-
-
 
 				<section> <label class="input"> <i
-					class="icon-append icon-envelope-alt"></i> <input type="text"
-					name="phone" ng-model="userEmail" ng-required="true"
-					placeholder="Phone Number"> <b
-					class="tooltip tooltip-bottom-right">Needed to verify your
-						account</b>
+					class="icon-append icon-envelope-alt"></i>Email Address :<%=list.get(i).getEmail() %><b
+					class="tooltip tooltip-bottom-right"></b>
 				</label> </section>
-
+				<section> <label class="input"> <i
+					class="icon-append icon-envelope-alt"></i>PhoneNumber : <%=list.get(i).getPhoneNumber() %><b
+					class="tooltip tooltip-bottom-right"></b>
+				</label> </section>
 				
 			</fieldset>
-			<footer>
-			<button type="submit" class="button" onclick="location.href='searchInfoTest.jsp'">Submit</button>
-			</footer>
 		</form>
-
 	</div>
 </body>
 <%
 		}
 %>
+
 </body>
 </html>

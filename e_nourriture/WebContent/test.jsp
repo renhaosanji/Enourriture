@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ page import="ent.controller.manager.managerController" %>
+	pageEncoding="EUC-KR"%>
+	<%@ page import="ent.controller.manager.managerController" %>
 <%@ page import="ent.controller.user.userController" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="ent.model.dto.User" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR" />
+<title>Sky Forms</title>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Cyrus Studio</title>
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
 <link rel="stylesheet" href="css/reg_css/demo.css">
 <link rel="stylesheet" href="css/reg_css/sky-forms.css">
 <!--[if lt IE 9]>
@@ -148,160 +148,55 @@
 	}
 </script>
 
-<!-- Google fonts -->
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700'
-	rel='stylesheet' type='text/css'>
-
-<!-- font awesome -->
-<link
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-	rel="stylesheet">
-
-<!-- bootstrap -->
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-
-<!-- animate.css -->
-<link rel="stylesheet" href="assets/animate/animate.css" />
-<link rel="stylesheet" href="assets/animate/set.css" />
-
-<!-- gallery -->
-<link rel="stylesheet" href="assets/gallery/blueimp-gallery.min.css">
-
-<!-- favicon -->
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="assets/style.css">
 
 </head>
-
-<body>
-	<div class="topbar animated fadeInLeftBig"></div>
-	<!-- Header Starts -->
-	<div class="navbar-wrapper">
-		<div class="container">
-	
-			<div class="navbar navbar-default navbar-fixed-top" role="navigation"
-				id="top-nav">
-				<div class="container">
-					<div class="navbar-header">
-						<!-- Logo Starts -->
-						<a class="navbar-brand" href="#home"><img
-							src="images/logo.png" alt="logo"></a>
-						<!-- #Logo Ends -->
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-					</div>
-					<!-- Nav Starts -->
-					<div class="navbar-collapse  collapse">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="#works">Time Line</a></li>
-							<li><a href="#about">My Page</a></li>
-							<li><a href="inputContentView.jsp">Write</a></li>
-							<li><a href="userInfoTest.jsp">정보조회</a></li>
-							<li><a href="userInfoTest.jsp">예약확인/취소</a></li>
-							<li><form method="post" action="ucontroller?action=logout">
-							<li><a href="loginView.jsp">logout</a></li>
-<!-- 									<input type="submit" value="logout"
-										onclick="location.href='logoutTest.jsp'"> -->
-								</form></li>
-							<!-- <li><form action="post"
-									action="ucontroller?action=following">
-									<input type="text" name="followingUserId"> <input
-										type="submit" value="following">
-								</form></li> -->
-
-						</ul>
-
-					</div>
-					<!-- #Nav Ends -->
-				</div>
-			</div>
-
-		</div>
-	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<%
-	userController us = new userController();
-	ArrayList<User> list2=us.userContents(request, response);
-	ArrayList<User> list = us.getList();
-	for(int i=0;i<list2.size();i++){
+<%=session.getAttribute("ID") %>
+<%	
+		
+		userController us = new userController();
+		ArrayList<User> list2=us.userContents(request, response);
+		ArrayList<User> list = us.getList();
+		for(int i=0;i<list2.size();i++){
 %>
-	<body class="bg-cyan">
+
+				<body class="bg-cyan">
 	<div class="body body-s">
-		<form method="post" class="sky-form" action="ucontroller?action=userInfoChange">
+		<form method="post" class="sky-form">
 
 			<header>Registration form</header>
 
 			<fieldset>
 				<section> <label class="input"> <i
-					class="icon-append icon-user"></i> ID :<%=list2.get(i).getUserId() %>
+					class="icon-append icon-user"></i> UserName :<%=list2.get(i).getUserId() %>
 					<b class="tooltip tooltip-bottom-right"></b> 
 				</label>
 				</section>
 
 				<section> <label class="input"> <i
-					class="icon-append icon-lock"></i> <input type="password"
-					id="password1" name="password" placeholder="Password"
-					ng-model="userPassword" ng-required="true"
-					ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/"> <b
-					class="tooltip tooltip-bottom-right">Only latin characters and
-						numbers</b>
-					<div ng-show="signUpForm.password.$error.pattern"
-						class="alert alert-warning" role="alert">최소 4글자, 최대 8글자이고
-						적어도 1나의 소문자, 대문자, 숫자를 포함해야합니다.</div>
+					class="icon-append icon-envelope-alt"></i>ID :<%=list2.get(i).getUserPw() %>
+					<b class="tooltip tooltip-bottom-right"></b>
 				</label> </section>
-
-				<section> <label class="input"> <i
-					class="icon-append icon-lock"></i> <input type="password"
-					ng-model="userRepassword" ng-required="true" id="password2"
-					name="password_chk" placeholder="Confirm password"> <b
-					class="tooltip tooltip-bottom-right">Only latin characters and
-						numbers</b>
-				</label> </section>
-
-				<div id="pass-info">Passwords Test</div>
-			</fieldset>
-
-			<fieldset>
 
 
 				<section> <label class="input"> <i
-					class="icon-append icon-envelope-alt"></i> <input type="text"
-					name="mail" ng-model="userEmail" ng-required="true"
-					placeholder="Email address"> <b
-					class="tooltip tooltip-bottom-right">Needed to verify your
-						account</b>
+					class="icon-append icon-lock"></i> PassWord :<%=list2.get(i).getNickname() %>
+					<b class="tooltip tooltip-bottom-right"></b>
 				</label> </section>
-
-
 
 				<section> <label class="input"> <i
-					class="icon-append icon-envelope-alt"></i> <input type="text"
-					name="phone" ng-model="userEmail" ng-required="true"
-					placeholder="Phone Number"> <b
-					class="tooltip tooltip-bottom-right">Needed to verify your
-						account</b>
+					class="icon-append icon-envelope-alt"></i>Email Address :<%=list2.get(i).getEmail() %><b
+					class="tooltip tooltip-bottom-right"></b>
 				</label> </section>
-
+				<section> <label class="input"> <i
+					class="icon-append icon-envelope-alt"></i>PhoneNumber : <%=list2.get(i).getPhoneNumber() %><b
+					class="tooltip tooltip-bottom-right"></b>
+				</label> </section>
 				
 			</fieldset>
-			<footer>
-			<button type="submit" class="button" onclick="location.href='searchInfoTest.jsp'">Submit</button>
-			</footer>
 		</form>
-
 	</div>
 </body>
 <%
 		}
 %>
-</body>
 </html>

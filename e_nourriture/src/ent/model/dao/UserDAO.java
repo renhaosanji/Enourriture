@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
 import ent.model.dto.Follow;
 import ent.model.dto.User;
 
@@ -137,6 +138,73 @@ public class UserDAO {
 		
 		return null;
 	}
+	public ArrayList<User> userContents(String userid) {
+		System.out.println("userContens 시작");
+		ArrayList<User> list = new ArrayList<User>();
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		User member = null;
+		String sql = "select * from userInfo where userId=?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				member = new User();
+				member.setUserId(rs.getString(1));
+				member.setUserPw(rs.getString(2));
+				member.setNickname(rs.getString(3));
+				member.setPhoneNumber(rs.getString(4));
+				member.setEmail(rs.getString(5));
+				list.add(member);
+			}
+
+		} catch (Exception ex) {
+			System.out.println("오류 발생 : " + ex);
+		} finally {
+			fd.close(rs, pstmt, conn);
+		}
+
+		return list;
+	}
+	public ArrayList<User> getList() {
+
+		ArrayList<User> list = new ArrayList<User>();
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		User member = null;
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select * from userInfo");
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				member = new User();
+				member.setUserId(rs.getString(1));
+				member.setUserPw(rs.getString(2));
+				member.setNickname(rs.getString(3));
+				member.setPhoneNumber(rs.getString(4));
+				member.setEmail(rs.getString(5));
+				list.add(member);
+			}
+
+		} catch (Exception ex) {
+			System.out.println("오류 발생 : " + ex);
+		} finally {
+			fd.close(rs, pstmt, conn);
+		}
+
+		return list;
+	}
 	
 	//5. user 삭제
 	public int delete(String userId, String userPw){
@@ -171,13 +239,12 @@ public class UserDAO {
 			// 2. db 서버연결
 			conn = getConnection();
 			// 3. 특정 sql 전용 통로개설
-			String sql = "update userinfo set userPw = ?, phoneNumber = ?, email=?, nickName = ? where userId = ?";
+			String sql = "update userinfo set userPw = ?, phoneNumber = ?, email=?, nickName = ? where userId ='"+dto.getUserId()+"'";
 			pstmt = conn.prepareStatement(sql); 
 			pstmt.setString(1, dto.getUserPw());
 		    pstmt.setString(2, dto.getPhoneNumber());
 		    pstmt.setString(3, dto.getEmail());
 		    pstmt.setString(4, dto.getNickname());
-		    pstmt.setString(5, dto.getUserId());
 			// 4. sql 수행요청 :
 			// 5. sql 결과처리\
 		    System.out.println("되는 거니");

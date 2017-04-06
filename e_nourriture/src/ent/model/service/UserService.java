@@ -5,15 +5,25 @@ import ent.model.dao.UserDAO;
 import ent.model.dto.Order;
 import ent.model.dao.OrderDAO;
 import ent.model.dto.Communication;
+import ent.model.dto.Contents;
+
+import java.util.ArrayList;
+
+
+
 import ent.model.dao.CommunicationDAO;
 public class UserService {
 	
+	private static UserService service = new UserService();
 	private UserDAO udao=new UserDAO();
 	private OrderDAO odao=new OrderDAO();
 	private CommunicationDAO cdao=new CommunicationDAO();;
 	
 	public UserService(){
 
+	}
+	public static UserService getInstance() {
+		return service;
 	}
 	public String login(String userid, String userpw) {
 		String loginid = udao.login(userid, userpw);
@@ -47,6 +57,10 @@ public class UserService {
 	public int insertComReciver(Communication dto){
 		return cdao.insertComReciver(dto);
 	}
-	
-	
+	public ArrayList<User> getList(){
+		return udao.getList();
+	} 
+	public ArrayList<User> userContents(String userid){
+		return udao.userContents(userid);
+	}
 }

@@ -2,6 +2,7 @@ package ent.controller.user;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +13,10 @@ import javax.servlet.http.HttpSession;
 import ent.model.dto.Order;
 import ent.model.dto.User;
 import ent.model.service.FollowService;
+import ent.model.service.ManagerService;
 import ent.model.service.UserService;
 import ent.model.dto.Communication;
+import ent.model.dto.Contents;
 /**
  * Servlet implementation class Controller
  */
@@ -46,7 +49,7 @@ public class userController extends HttpServlet {
 				userLeave(request, response);
 				break;
 			case "userInfo":
-				userInfo(request, response);
+				userContents(request, response);
 				break;
 			case "userInfoChange":
 				userInfoChange(request, response);
@@ -66,7 +69,6 @@ public class userController extends HttpServlet {
 			case "following":
 				following(request, response);
 				break;
-			
 			default:
 				System.out.println("해당 요청이 없습니다.");
 				break;
@@ -76,10 +78,9 @@ public class userController extends HttpServlet {
 		}
 	}
 
-	
-	
 
 
+	
 	//  1. 로그인 
 	protected void login(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -209,29 +210,32 @@ public class userController extends HttpServlet {
 		}
 	}
 	//   5. 내 정보 조회
-	protected void userInfo(HttpServletRequest request, HttpServletResponse response)
+	public ArrayList<User> userContents(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		
+		
 		HttpSession session = request.getSession(false);
+		System.out.println(session);
 		if (session != null && session.getAttribute("ID") != null) {
 
 			String id = (String) session.getAttribute("ID");
 			UserService us = new UserService();
-			User user = us.selectOne(id);
-
-			if (user != null) {
-				System.out.println("1"+user.getUserId()+" "+user.getPhoneNumber()+" "+user.getUserPw());
-				request.setAttribute("user", user);
-				request.getRequestDispatcher("userInfo.jsp").forward(request, response);
-			} else {
-				request.getRequestDispatcher("index.jsp").forward(request, response);
-			}
+			return us.userContents(id);
 		} else {
 			System.out.println("정보 조회에 실패하였습니다.");
 			request.setAttribute("message", "정보 조회에 실패하였습니다.");
 			request.getRequestDispatcher("error/error.jsp").forward(request, response);
 		}
+		return null;
+	}
+	// order 
+	public ArrayList<User> getList() throws ServletException, IOException {
+		
+		UserService us = new UserService();
+		
+		return us.getList();
+			
 	}
 	// 6. 내 정보 변경 
 	private void userInfoChange(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -267,7 +271,7 @@ public class userController extends HttpServlet {
 				if (us.update(newMember) != 0) {
 					System.out.println("변경 성공");
 					request.setAttribute("message", "변경 성공");
-					request.getRequestDispatcher("changeSuccess.jsp").forward(request, response);
+					request.getRequestDispatcher("searchInfoTest.jsp").forward(request, response);
 				} else {
 					System.out.println("없음");
 					request.setAttribute("message", "없음");

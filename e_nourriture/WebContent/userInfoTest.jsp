@@ -62,7 +62,7 @@
 							<li class="active"><a href="#works">Time Line</a></li>
 							<li><a href="#about">My Page</a></li>
 							<li><a href="inputContentView.jsp">Write</a></li>
-							<li><a href="userInfoTest.jsp">정보조회</a></li>
+							<li><a href="searchInfoTest.jsp">내정보확인</a></li>
 							<li><a href="userInfoTest.jsp">예약확인/취소</a></li>
 							<li><form method="post" action="ucontroller?action=logout">
 							<li><a href="loginView.jsp">logout</a></li>
