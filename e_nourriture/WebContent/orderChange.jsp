@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%@ page import="ent.controller.user.userController"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="ent.model.dto.User"%>
+    pageEncoding="EUC-KR"%>
+<%@ page import="ent.controller.manager.managerController" %>
+<%@ page import="ent.controller.user.userController" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="ent.model.dto.User" %>
 <%@ page import="ent.model.dto.Order"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -179,7 +180,7 @@
 	<!-- Header Starts -->
 	<div class="navbar-wrapper">
 		<div class="container">
-
+	
 			<div class="navbar navbar-default navbar-fixed-top" role="navigation"
 				id="top-nav">
 				<div class="container">
@@ -203,11 +204,11 @@
 							<li><a href="inputContentView.jsp">Write</a></li>
 							<li><a href="userInfoTest.jsp">정보조회</a></li>
 							<li><a href="userInfoTest.jsp">예약확인/취소</a></li>
-
+							
 							<li><a href="ucontroller?action=logout">logout</a></li>
-							<!-- 									<input type="submit" value="logout"
+<!-- 									<input type="submit" value="logout"
 										onclick="location.href='logoutTest.jsp'"> -->
-
+								
 							<!-- <li><form action="post"
 									action="ucontroller?action=following">
 									<input type="text" name="followingUserId"> <input
@@ -228,53 +229,72 @@
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-<body class="bg-cyan">
-	<div class="body body-s">
-		<form method="post" class="sky-form" action="">
-
-			<header>User Information</header>
-
 	<%
-		userController us = new userController();
-		ArrayList<Order> list2 = us.orderInfo(request, response);
+	userController us = new userController();
+	ArrayList<Order> list2=us.orderInfo(request, response);
+	for(int i=0;i<list2.size();i++){
+%>
+	<body class="bg-cyan">
+	<div class="body body-s">
+		<form method="post" class="sky-form" action="ucontroller?action=orderChange">
 
-		for (int i = 0; i < list2.size(); i++) {
-	%>
-				
+			<header>Change Order</header>
 
 			<fieldset>
-				<section> <label class="input"> userId :<%=list2.get(i).getUserId()%>
-					<b class="tooltip tooltip-bottom-right"></b>
+				<section> 
+				 <input type="hidden" name="userId" value='<%=list2.get(i).getUserId() %>' >
+				 <label class="input"> 
+				 OrderId :<%=list2.get(i).getUserId() %>
+				 <input type="hidden" name="orderNumber" value='<%=list2.get(i).getOrderNumber() %>' >
+				<label class="input"> 
+				 OrderNumber :<%=list2.get(i).getOrderNumber() %>
+				<b class="tooltip tooltip-bottom-right"></b> 
+				</label>
+				</section>
+				
+				<br>
+				<section> <label class="input"> 
+				 ProductName :<%=list2.get(i).getProductName() %>
+				<b class="tooltip tooltip-bottom-right"></b> 
+				</label>
+				</section>
+				<section> <label class="input"> <i
+					class="icon-append icon-envelope-alt"></i> <input type="text"
+					name="productName" ng-model="userEmail" ng-required="true"
+					placeholder="ProductName"> 
+				</label> </section>
+				<section> <label class="input"> 
+				 OrderCount :<%=list2.get(i).getOrderCount() %>
+				<b class="tooltip tooltip-bottom-right"></b> 
+				</label>
+				</section>
+				<section> <label class="input"> <i
+					class="icon-append icon-envelope-alt"></i> <input type="text"
+					name="orderCount" ng-model="userEmail" ng-required="true"
+					placeholder="OrderCount"> 
+				</label> </section>
+					<section> <label class="input"> 
+				 OrderTime :<%=list2.get(i).getOrderTime() %>
+				<b class="tooltip tooltip-bottom-right"></b> 
+				</label>
+				</section>
+				<section> <label class="input"> <i
+					class="icon-append icon-envelope-alt"></i> <input type="text"
+					name="orderTime" ng-model="userEmail" ng-required="true"
+					placeholder="OrderTime"> 
 				</label> </section>
 
-				<section> <label class="input"> orderNumber :<%=list2.get(i).getOrderNumber()%>
-					<b class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
-				<section> <label class="input"> orderCount :<%=list2.get(i).getOrderCount()%><b
-					class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
-				<section> <label class="input"> orderTime : <%=list2.get(i).getOrderTime()%><b
-					class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
-				 <form method="post" action="ucontroller?action=orderCancel">
-                  <input type="hidden" name="userId" value='<%=list2.get(i).getUserId() %>' >
-                  <input type="hidden" name="orderNumber" value='<%=list2.get(i).getOrderNumber() %>' >
-                  <button type="submit" class="button">주문 취소</button>
-				</form>
-				<button type="button" class="button" onclick="location.href='orderChange.jsp'">정보변경</button>
-				<br>
-		</fieldset>
-			
-			<%
-			}
-		%>	
+				
+			</fieldset>
+			<footer>
+			<button type="submit" class="button" onclick="location.href='orderInfoTest.jsp'">변경</button>
+			</footer>
 		</form>
+
 	</div>
 </body>
-
-
+<%
+		}
+%>
 </body>
 </html>

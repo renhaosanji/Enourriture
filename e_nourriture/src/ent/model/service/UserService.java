@@ -48,12 +48,14 @@ public class UserService {
 		return odao.purchase(dto);
 	}
 	public ArrayList<Order> purchaseInfo(String userid){
-		System.out.println("4");
 		return odao.purchaseInfo(userid);
 	}
 	public int cancellation(String orderNumber, String userId){
 
 		return odao.cancellation(orderNumber,userId );
+	}
+	public int orderChange(Order dto){
+		return odao.orderChange(dto);
 	}
 	
 	public int insertComSender(Communication dto){
