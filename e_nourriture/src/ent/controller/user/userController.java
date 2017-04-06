@@ -77,7 +77,7 @@ public class userController extends HttpServlet {
 	}
 
 	
-
+	
 
 
 	//  1. 로그인 
@@ -93,11 +93,11 @@ public class userController extends HttpServlet {
 		if (id == null || password == null) {
 			System.out.println("입력이 잘못 되었습니다.");
 			request.setAttribute("message", "입력이 잘못 되었습니다.");
-			request.getRequestDispatcher("error/error.html").forward(request, response);
+			request.getRequestDispatcher("loginView.jsp").forward(request, response);
 			return;
 		} else if (id.trim().length() == 0 || password.trim().length() == 0) {
 			System.out.println("입력이 잘못 되었습니다.");
-			response.sendRedirect("login.html");
+			response.sendRedirect("loginView.jsp");
 			return;
 
 		}
