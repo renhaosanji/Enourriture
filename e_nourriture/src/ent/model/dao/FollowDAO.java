@@ -121,7 +121,7 @@ public class FollowDAO {
 //					     communicationList.add(communication);
 //					}
 //					followingUserContent.setCommunication(communicationList);
-//					followingUserContentList.add(followingUserContent);
+					followingUserContentList.add(followingUserContent);
 				}
 
 			} catch (Exception e) {
