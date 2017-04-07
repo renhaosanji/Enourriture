@@ -62,6 +62,9 @@ public class userController extends HttpServlet {
 			case "orderCancel":
 				orderCancel(request, response);
 				break;
+			case "orderChange":
+				orderChange(request, response);
+				break;
 			case "writeSendComment":
 				writeSendCom(request, response);
 				break;
@@ -340,6 +343,50 @@ public class userController extends HttpServlet {
 			}
 
 			request.getRequestDispatcher("loginView.jsp").forward(request, response);
+	}
+	private void orderChange(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("euc-kr");
+		System.out.println("주문 변경시작");
+		HttpSession session = request.getSession(false);
+		String orderNumber = request.getParameter("orderNumber"); // 주문 번호
+		String userId=(String) session.getAttribute("ID");
+		String orderCount = request.getParameter("orderCount"); // 주문 번호
+		String orderTime= request.getParameter("orderTime"); // ID
+		String productName= request.getParameter("productName"); // ID
+		if (session != null && session.getAttribute("ID") != null) {
+			System.out.println("1 "+userId+" "+orderNumber+" "+orderCount+" "+orderTime+" "+productName);
+			
+			if (userId == null || orderNumber == null) {
+				// 요청 결과 받아서 응답 위한 설정
+				request.setAttribute("message", "userId 와 orderNumber null");
+				request.getRequestDispatcher("error/error.jsp").forward(request, response);
+			} else if (userId.trim().length() == 0 || orderNumber.trim().length() == 0) {
+				System.out.println("다시 입력");
+				// response.sendRedirect("login.jsp");
+			} else {
+				
+				Order newMember = new Order(userId,orderNumber, productName, orderCount,orderTime);
+				UserService us = new UserService();
+				
+				int update=us.orderChange(newMember) ;
+				System.out.println(update);
+
+				if (us.orderChange(newMember) != 0) {
+					System.out.println("변경 성공");
+					request.setAttribute("message", "변경 성공");
+					request.getRequestDispatcher("searchInfoTest.jsp").forward(request, response);
+				} else {
+					System.out.println("없음");
+					request.setAttribute("message", "없음");
+					request.getRequestDispatcher("error/error.jsp").forward(request, response);
+				}
+			}
+
+		} else {
+			System.out.println("session error 정보변경실패");
+			request.getRequestDispatcher("error/error.jsp").forward(request, response);
+		}
+		
 	}
 	//8. 주문최소
 	private void orderCancel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

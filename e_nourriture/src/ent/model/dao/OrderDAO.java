@@ -110,6 +110,34 @@ public class OrderDAO {
 		}	
 		return 0;
 	}
+	public int orderChange(Order order){
+		System.out.println("OrderDAO 까지 잘 들어왔어");
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		System.out.println(order.getUserId());
+		System.out.println(order.getProductName());
+		System.out.println(order.getOrderCount());
+		System.out.println(order.getOrderTime());
+	
+		String sql = "update ORDERINFO set ProductionName = ?, orderCount = ?, orderTime=? where userId ='"+order.getUserId()+"' and orderNumber ='"+order.getOrderNumber();
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, order.getProductName());
+			pstmt.setString(2, order.getOrderCount());
+			pstmt.setString(3,order.getOrderTime());
+			System.out.println("pstmt에 값넣고 있어 ");
+			return pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		
+			fd.close(pstmt,conn);
+			
+		}	
+		return 0;
+	}
 }
 
  

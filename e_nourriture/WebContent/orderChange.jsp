@@ -4,6 +4,7 @@
 <%@ page import="ent.controller.user.userController" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="ent.model.dto.User" %>
+<%@ page import="ent.model.dto.Order"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -199,6 +200,7 @@
 					<div class="navbar-collapse  collapse">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="#works">Time Line</a></li>
+							
 							<li><a href="inputContentView.jsp">Write</a></li>
 							<li><a href="searchInfoTest.jsp">My Information</a></li>
 							<li><a href="orderInfoTest.jsp">Reservation Confirm/Cancell</a></li>
@@ -206,7 +208,7 @@
 							<li><a href="ucontroller?action=logout">logout</a></li>
 <!-- 									<input type="submit" value="logout"
 										onclick="location.href='logoutTest.jsp'"> -->
-						
+								
 							<!-- <li><form action="post"
 									action="ucontroller?action=following">
 									<input type="text" name="followingUserId"> <input
@@ -229,48 +231,70 @@
 	<br>
 	<%
 	userController us = new userController();
-	ArrayList<User> list2=us.userContents(request, response);
-	ArrayList<User> list = us.getList();
+	ArrayList<Order> list2=us.orderInfo(request, response);
 	for(int i=0;i<list2.size();i++){
-	%>
-				<body class="bg-cyan">
+%>
+	<body class="bg-cyan">
 	<div class="body body-s">
-		<form method="post" class="sky-form" action="" >
+		<form method="post" class="sky-form" action="ucontroller?action=orderChange">
 
-			<header>User Information</header>
+			<header>Change Order</header>
 
 			<fieldset>
-				<section> <label class="input">  UserName :<%=list2.get(i).getNickname() %>
-					<b class="tooltip tooltip-bottom-right"></b> 
+				<section> 
+				 <input type="hidden" name="userId" value='<%=list2.get(i).getUserId() %>' >
+				 <label class="input"> 
+				 OrderId :<%=list2.get(i).getUserId() %>
+				 <input type="hidden" name="orderNumber" value='<%=list2.get(i).getOrderNumber() %>' >
+				<label class="input"> 
+				 OrderNumber :<%=list2.get(i).getOrderNumber() %>
+				<b class="tooltip tooltip-bottom-right"></b> 
 				</label>
 				</section>
-
-				<section> <label class="input"> ID :<%=list2.get(i).getUserId() %>
-					<b class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
-
-
-				<section> <label class="input"> PassWord :<%=list2.get(i).getUserPw() %>
-					<b class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
-
-				<section> <label class="input"> Email Address :<%=list2.get(i).getEmail() %><b
-					class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
-				<section> <label class="input"> PhoneNumber : <%=list2.get(i).getPhoneNumber() %><b
-					class="tooltip tooltip-bottom-right"></b>
-				</label> </section>
-			
-				<button type="button" class="button" onclick="location.href='idDelete.jsp'">Withdraw</button>
-				<button type="button" class="button" onclick="location.href='infoChangeTest.jsp'">Change Information</button>
+				
 				<br>
-				</fieldset>
+				<section> <label class="input"> 
+				 ProductName :<%=list2.get(i).getProductName() %>
+				<b class="tooltip tooltip-bottom-right"></b> 
+				</label>
+				</section>
+				<section> <label class="input"> <i
+					class="icon-append icon-envelope-alt"></i> <input type="text"
+					name="productName" ng-model="userEmail" ng-required="true"
+					placeholder="ProductName"> 
+				</label> </section>
+				<section> <label class="input"> 
+				 OrderCount :<%=list2.get(i).getOrderCount() %>
+				<b class="tooltip tooltip-bottom-right"></b> 
+				</label>
+				</section>
+				<section> <label class="input"> <i
+					class="icon-append icon-envelope-alt"></i> <input type="text"
+					name="orderCount" ng-model="userEmail" ng-required="true"
+					placeholder="OrderCount"> 
+				</label> </section>
+					<section> <label class="input"> 
+				 OrderTime :<%=list2.get(i).getOrderTime() %>
+				<b class="tooltip tooltip-bottom-right"></b> 
+				</label>
+				</section>
+				<section> <label class="input"> <i
+					class="icon-append icon-envelope-alt"></i> <input type="text"
+					name="orderTime" ng-model="userEmail" ng-required="true"
+					placeholder="OrderTime"> 
+				</label> </section>
+
+				
+			</fieldset>
+			<footer>
+			<button type="submit" class="button" onclick="location.href='orderInfoTest.jsp'">Submit</button>
+			</footer>
 		</form>
+
 	</div>
 </body>
 <%
 		}
 %>
-
 </body>
 </html>

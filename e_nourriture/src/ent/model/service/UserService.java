@@ -53,6 +53,10 @@ public class UserService {
 		System.out.println("4");
 		return odao.purchaseInfo(userid);
 	}
+	public int orderChange(Order dto) {
+		return odao.orderChange(dto);
+	}
+
 	public int cancellation(String orderNumber, String userId){
 
 		return odao.cancellation(orderNumber,userId );
