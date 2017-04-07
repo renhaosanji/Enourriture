@@ -64,6 +64,7 @@ public class FollowDAO {
 	public ArrayList<Contents> usersFollowingContentsLoading(ArrayList<String> followingUserIds) {
 		Connection conn = null;
 		Statement stmt = null;
+		Statement stmt2 = null;
 		ResultSet rs = null;
 		ResultSet rs1 = null;
 
@@ -87,6 +88,7 @@ public class FollowDAO {
 			try {
 				conn = getConnection();
 				stmt = getStatement(conn);
+				stmt2 = getStatement(conn);
 				String sql = sqlcon1 + followingUserIds.get(0) + "\'" + sb.toString() + "\'" + sqlcon3;
 				System.out.println("Äõ¸®Å×½ºÆ®" + sql);
 				rs = stmt.executeQuery(sql);
@@ -110,17 +112,18 @@ public class FollowDAO {
 					followingUserContent.setProductInfo(pi);
 					pi.setEvaluation(rs.getInt(12));
 					followingUserContent.setProductInfo(pi);
-//                    String sql2= "select * from USERCOMMUNICATION where CONTENTSID =\'"+rs.getString(2) + "\'";
-//					rs1 = stmt.executeQuery(sql2);
-//					while (rs1.next()) {
-//						Communication communication = new Communication();
-//						 communication.setSenderId(rs1.getString(3));
-//						 communication.setReceiverId(rs1.getString(4));
-//						 communication.setComments(rs1.getString(2));
-//					     communication.setCommentTime(rs1.getString(5));
-//					     communicationList.add(communication);
-//					}
-//					followingUserContent.setCommunication(communicationList);
+                    String sql2= "select * from USERCOMMUNICATION where CONTENTSID =\'"+rs.getString(2) + "\'";
+					rs1 = stmt2.executeQuery(sql2);
+					while (rs1.next()) {
+						Communication communication = new Communication();
+						 communication.setSenderId(rs1.getString(3));
+						 communication.setReceiverId(rs1.getString(4));
+						 communication.setComments(rs1.getString(2));
+					     communication.setCommentTime(rs1.getString(5));
+                         communicationList.add(communication);
+					}
+					
+					followingUserContent.setCommunication(communicationList);
 					followingUserContentList.add(followingUserContent);
 				}
 
@@ -130,7 +133,7 @@ public class FollowDAO {
 			} finally {
 
 				fd.close(stmt, conn);
-
+                fd.close(stmt2, conn);
 			}
 
 			return followingUserContentList;
