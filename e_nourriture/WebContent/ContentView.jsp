@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" href="css/write_css/style.css">
-<link rel="stylesheet" href="css/reg_css/demo.css">
+<link rel="stylesheet" href="css/reg_css/demo2.css">
 <link rel="stylesheet" href="css/reg_css/sky-forms.css">
 <link rel="stylesheet" href="css/write_css/rating.css">
 <link rel="stylesheet" href="css/write_css/file_upload.css">
