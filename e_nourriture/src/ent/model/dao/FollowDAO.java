@@ -67,7 +67,7 @@ public class FollowDAO {
 
 		ArrayList<Contents> followingUserContentList = new ArrayList<>();
 		String sqlcon1 = "select * from USERCONTENTS left outer join CONTENTSINFODB on USERCONTENTS.contentsid = CONTENTSINFODB.contentsid where USERCONTENTS.userid=\'";
-		String sqlcon2 = "or USERCONTENTS.userid=\'";
+		String sqlcon2 = "' or USERCONTENTS.userid=\'";
 		String sqlcon3 = "order by times";
 
 		StringBuilder sb = new StringBuilder("");
@@ -84,7 +84,7 @@ public class FollowDAO {
 			try {
 				conn = getConnection();
 				stmt = getStatement(conn);
-				String sql = sqlcon1 + followingUserIds.get(0) + "\'" + sb.toString() + "\'" + sqlcon3;
+				String sql = sqlcon1 + followingUserIds.get(0)  + sb.toString() + "\'" + sqlcon3;
 				System.out.println("Äõ¸®Å×½ºÆ®" + sql);
 				rs = stmt.executeQuery(sql);
 				while (rs.next()) {
