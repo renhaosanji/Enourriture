@@ -36,8 +36,8 @@
 </head>
 
 <body>
-	<div class="topbar animated fadeInLeftBig"></div>
-	<!-- Header Starts -->
+	<!-- <div class="topbar animated fadeInLeftBig"></div>
+	Header Starts
 	<div class="navbar-wrapper">
 		<div class="container">
 
@@ -45,10 +45,10 @@
 				id="top-nav">
 				<div class="container">
 					<div class="navbar-header">
-						<!-- Logo Starts -->
+						Logo Starts
 						<a class="navbar-brand" href="#home"><img
 							src="images/logo.png" alt="logo"></a>
-						<!-- #Logo Ends -->
+						#Logo Ends
 						<button type="button" class="navbar-toggle collapsed"
 							data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">Toggle navigation</span> <span
@@ -56,7 +56,7 @@
 								class="icon-bar"></span>
 						</button>
 					</div>
-					<!-- Nav Starts -->
+					Nav Starts
 					<div class="navbar-collapse  collapse">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="#works">Time Line</a></li>
@@ -65,23 +65,24 @@
 							<li><a href="orderInfoTest.jsp">Reservation Confirm/Cancell</a></li>
 							
 							<li><a href="ucontroller?action=logout">logout</a></li>
-<!-- 									<input type="submit" value="logout"
-										onclick="location.href='logoutTest.jsp'"> -->
-							<!-- <li><form action="post"
+									<input type="submit" value="logout"
+										onclick="location.href='logoutTest.jsp'">
+							<li><form action="post"
 									action="ucontroller?action=following">
 									<input type="text" name="followingUserId"> <input
 										type="submit" value="following">
-								</form></li> -->
+								</form></li>
 
 						</ul>
 
 					</div>
-					<!-- #Nav Ends -->
+					#Nav Ends
 				</div>
 			</div>
 
 		</div>
-	</div>
+	</div> -->
+	<jsp:include page="userTop2.jsp"/>
 	<jsp:include page="gridViewMyPage.jsp"/>
 </body>
 </html>
