@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import ent.model.dto.Communication;
 import ent.model.dto.Contents;
 import ent.model.dto.ProductInfo;
 
@@ -67,6 +68,7 @@ public class FollowDAO {
 		ResultSet rs1 = null;
 
 		ArrayList<Contents> followingUserContentList = new ArrayList<>();
+		
 		String sqlcon1 = "select * from USERCONTENTS left outer join CONTENTSINFODB on USERCONTENTS.contentsid = CONTENTSINFODB.contentsid where USERCONTENTS.userid=\'";
 		String sqlcon2 = "or USERCONTENTS.userid=\'";
 		String sqlcon3 = "order by times desc";
@@ -90,6 +92,7 @@ public class FollowDAO {
 				rs = stmt.executeQuery(sql);
 				while (rs.next()) {
 					Contents followingUserContent = new Contents();
+					ArrayList<Communication> communicationList = new ArrayList<>();
 					ProductInfo pi = new ProductInfo();
 					followingUserContent.setUserId(rs.getString(1));
 					followingUserContent.setContentId(rs.getString(2));
@@ -107,13 +110,18 @@ public class FollowDAO {
 					followingUserContent.setProductInfo(pi);
 					pi.setEvaluation(rs.getInt(12));
 					followingUserContent.setProductInfo(pi);
-                    String sql2= "select * from USERCOMMUNICATION where CONTENTSID =\'"+rs.getString(2);
-					rs1 = stmt.executeQuery(sql2);
-					while (rs1.next()) {
-						
-						
-					}
-					followingUserContentList.add(followingUserContent);
+//                    String sql2= "select * from USERCOMMUNICATION where CONTENTSID =\'"+rs.getString(2) + "\'";
+//					rs1 = stmt.executeQuery(sql2);
+//					while (rs1.next()) {
+//						Communication communication = new Communication();
+//						 communication.setSenderId(rs1.getString(3));
+//						 communication.setReceiverId(rs1.getString(4));
+//						 communication.setComments(rs1.getString(2));
+//					     communication.setCommentTime(rs1.getString(5));
+//					     communicationList.add(communication);
+//					}
+//					followingUserContent.setCommunication(communicationList);
+//					followingUserContentList.add(followingUserContent);
 				}
 
 			} catch (Exception e) {
