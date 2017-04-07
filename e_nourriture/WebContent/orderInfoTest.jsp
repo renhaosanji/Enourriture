@@ -202,7 +202,11 @@
 
 							<li><a href="inputContentView.jsp">Write</a></li>
 							<li><a href="searchInfoTest.jsp">My Information</a></li>
+<<<<<<< HEAD
 							<li><a href="orderInfoTest.jsp">Reservation Confirm/Cancell</a></li>
+=======
+							<li><a href="orderInfoTest.jsp">Reservation Confirm/Cancel</a></li>
+>>>>>>> refs/heads/new
 
 							<li><a href="ucontroller?action=logout">logout</a></li>
 							<!-- 									<input type="submit" value="logout"

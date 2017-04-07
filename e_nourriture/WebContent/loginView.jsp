@@ -38,7 +38,8 @@
 				<!--  <button type="button" onclick="location.href='main.html'">Sign
 					In</button>-->
 
-				<input type="submit" value="submit">
+				<!-- <input type="submit" value="submit"> -->
+				<button type="submit">Sign In</button>
 
 				<!--  <button type="submit">Sign Up</button>-->
 				<button type="button" onclick="location.href='joinView.jsp'">Sign

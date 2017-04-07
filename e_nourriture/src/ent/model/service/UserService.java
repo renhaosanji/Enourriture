@@ -66,6 +66,9 @@ public class UserService {
 		return odao.purchaseInfo(userid);
 	}
 
+
+  
+
 	public int cancellation(String orderNumber, String userId) {
 
 		return odao.cancellation(orderNumber, userId);

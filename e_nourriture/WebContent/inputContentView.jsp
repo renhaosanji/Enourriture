@@ -194,7 +194,9 @@ label.star:before {
 
 
 			<footer>
+			
 				<button type="submit" class="button" onclick="location.href='index.jsp'">Upload!</button>
+				<button type="submit" class="button" onclick="history.back()">Cancel</button>
 			</footer>
 		</form>
 
